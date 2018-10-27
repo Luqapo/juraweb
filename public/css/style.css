@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(to bottom, rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%);
+    width: 100%;
+    height: 94vh;
+    font-family: 'Lato', sans-serif;
+}
+
+#app{
+    max-width: 1140px;
+    height: 100%;
+    margin: 20px auto;
+}
+
+.mainContainer{
+    display: flex;
+}
+
+.north, .center, .east{
+    width: 32%;
+    height: 80vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: .5s;
+    color: white;
+    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
+    position: relative;
+}
+
+.upperList {
+    width: 825px;
+    height: 15%;
+    overflow: auto;
+}
+
+.upperList > ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.upperList ul li a {
+    font-size: .8rem;
+    line-height: 20px;
+    color: black;
+    text-shadow: none;
+    padding: 5px;
+    display: block;
+}
+
+.upperList ul li a:hover {
+    color: red;
+}
+
+.downList {
+    width: 100%;
+    height: 85%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: .5s;
+    color: white;
+    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    font-size: 1.5rem;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
+}
+
+a:hover{
+    color: cornflowerblue;
+}
+
+.nav{
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
+    background: cadetblue;
+    border-radius: 10px 10px 0 0;
+}
+
+.nav h1 {
+    color: darkblue;
+}
+
+.nav h6 {
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+input{
+    width: 120px;
+}
+
+button {
+    height: 25px;
+    margin: 5px 14px;
+    border: 1px solid darkblue;
+    border-radius: 10px;
+    background-color: white;
+    color: darkblue;
+    padding: 4px;
+}
+
+button:hover {
+    height: 25px;
+    margin: 5px 14px;
+    border: 1px solid darkblue;
+    border-radius: 10px;
+    background-color: darkblue;
+    color: white;
+    padding: 4px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
