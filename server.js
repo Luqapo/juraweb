@@ -7,6 +7,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('./public/'));
 
-app.listen(3000, () => {
-    console.log('Server listen at port 3000');
+app.listen(5000, () => {
+    console.log('Server listen at port 5000');
 })
