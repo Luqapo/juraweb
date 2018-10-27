@@ -16,17 +16,17 @@ class CenterJura extends React.Component{
 
 
     componentDidMount() {
-        fetch(`http://localhost:3010/regiony?name=center`)
+        fetch(`http://localhost:5000/api/regiony/center`)
             .then( resp => resp.json())
             .then( resp => {
-                let list = resp[0].rejony;
-                let skalyArr = [];
-                list.forEach(el => skalyArr.push(el.skaly));
-                let listElements = list.map( (el,index) => <li key={index}><a href="#" onClick={this.handleSchow} data-index={index} data-id="2">{el.name}</a></li>);
+                // let list = resp[0].rejony;
+                // let skalyArr = [];
+                // list.forEach(el => skalyArr.push(el.skaly));
+                let listElements = resp.map( (el,index) => <li key={el._id}><a href="#" onClick={this.handleSchow} data-index={index} data-id="2">{el.rejon}</a></li>);
 
                 this.setState({
-                    data: listElements,
-                    skaly: skalyArr
+                    data: listElements
+                    //skaly: skalyArr
                 })
             })
             .catch( err => {
