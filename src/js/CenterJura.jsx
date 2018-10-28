@@ -19,14 +19,10 @@ class CenterJura extends React.Component{
         fetch(`https://mojajura.herokuapp.com/api/regiony/center`)
             .then( resp => resp.json())
             .then( resp => {
-                // let list = resp[0].rejony;
-                // let skalyArr = [];
-                // list.forEach(el => skalyArr.push(el.skaly));
-                let listElements = resp.map( (el,index) => <li key={el._id}><a href="#" onClick={this.handleSchow} data-index={index} data-id="2">{el.rejon}</a></li>);
+                let listElements = resp.map( el => <li key={el._id}><a href="#" onClick={this.handleSchow} data-rejon={el.rejon} data-id="2">{el.rejon}</a></li>);
 
                 this.setState({
                     data: listElements
-                    //skaly: skalyArr
                 })
             })
             .catch( err => {
@@ -44,12 +40,15 @@ class CenterJura extends React.Component{
         if(typeof this.props.handleSchow === 'function'){
             this.props.handleSchow(e);
 
-            let skalyIndex = e.target.dataset.index;
-            let newArr = [...this.state.skaly[skalyIndex]];
+            let rejonName = e.target.dataset.rejon;
 
-            this.setState({
-                sklayToShow: newArr
-            })
+            fetch(`https://mojajura.herokuapp.com/api/rejony/${rejonName}`)
+            .then( resp => resp.json())
+            .then( resp => {
+                    this.setState({
+                        sklayToShow: resp
+                    })
+            })   
         }
     }
 

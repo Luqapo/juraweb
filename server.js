@@ -28,11 +28,28 @@ router.use((req,res,next) => {
 
 router.route('/regiony/:region_id')
     .get((req,res) => {
-        console.log("szukam", req.params.region_id);
         Rejon.find({region: req.params.region_id})
             .then(rejony => {
-                console.log(rejony);
                 res.json(rejony);
+            })
+            .catch(err => console.log(err));
+    })
+
+router.route('/rejony/:rejon_id')
+    .get((req,res) => {
+        Skala.find({rejon: req.params.rejon_id})
+            .then(rejony => {
+                res.json(rejony);
+            })
+            .catch(err => console.log(err));
+    })
+
+router.route('/skaly/:skala_id')
+    .get((req,res) => {
+        console.log(req.params.skala_id);
+        Droga.find({skala: req.params.skala_id})
+            .then(skaly => {
+                res.json(skaly);
             })
             .catch(err => console.log(err));
     })
