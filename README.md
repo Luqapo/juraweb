@@ -2,6 +2,10 @@
 
 https://mojajura.herokuapp.com/#
 
+![Alt text](
+     https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-18-51%20%5Bwww.imagesplitter.net%5D.jpeg
+    )
+
 Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną baze dróg.
 
 Technologie użyte: React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB.
