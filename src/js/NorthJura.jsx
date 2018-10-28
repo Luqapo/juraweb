@@ -16,7 +16,7 @@ class NorthJura extends React.Component{
 
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/regiony/north`)
+        fetch(`https://mojajura.herokuapp.com/api/regiony/north`)
             .then( resp => resp.json())
             .then( resp => {
                 // let list = resp[0].rejony;

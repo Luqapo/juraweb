@@ -16,7 +16,7 @@ class CenterJura extends React.Component{
 
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/regiony/center`)
+        fetch(`https://mojajura.herokuapp.com/api/regiony/center`)
             .then( resp => resp.json())
             .then( resp => {
                 // let list = resp[0].rejony;
