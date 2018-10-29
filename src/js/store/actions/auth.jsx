@@ -28,18 +28,15 @@ export const logOff = () => {
 };
 
 export const addUser = (login, password, password2, email) => {
-    if (login.length > 5 && password.length > 5 && password === password2 && email) {
-        const newUser = {
-            "login": login,
-            "password": password,
-            "email": email
-        };
+    if (login.length > 5 && password.length > 5 && password === password2 && email.length > 5) {
         return dispatch => {
             dispatch(authStart());
             fetch('https://mojajura.herokuapp.com/api/auth/register', {
                 method : 'POST',
                 body : JSON.stringify({
-                    newUser
+                    login: login,
+                    password: password,
+                    email: email
                 }),
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,19 +66,7 @@ export const auth = (login, password) => {
             },
         })
         .then(function (response) {
-                let logged = false;
-
-                response.data.forEach( el => {
-                    if ( el.login ===  login && el.password === password){
-                        logged = true;
-                    }
-                })
-
-                if (logged){
-                    dispatch(authSucces(login));
-                } else {
-                    dispatch (authFail('błędne dane'));
-                };
+                console.log(response);
             })
         .catch(function (error){
                 console.log(error);
