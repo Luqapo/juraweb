@@ -23,7 +23,7 @@ router.post('/register', (req,res) => {
         const token = jwt.sign({ id: user._id }, config.secret, {
             expiresIn: 86400
         });
-        res.status(200).json({ auth: true, token: token });
+        res.json({ auth: true, token: token });
     });
 });
 
@@ -55,12 +55,12 @@ router.post('/login', (req,res) => {
             expiresIn: 86400
         });
 
-        res.status(200).json({ auth: true, token: token });
+        res.json({ auth: true, token: token });
     });
 });
 
 router.get('/logout', (req,res) => {
-    res.status(200).json({ auth: false, token: null });
+    res.json({ auth: false, token: null });
 });
 
 module.exports = router;
