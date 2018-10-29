@@ -28,7 +28,7 @@ class RouteList extends React.Component{
         let newIndex = null;
 
         newRoutes.forEach((el,index) => {
-            if(el.dorga === drogaName){
+            if(el.droga === drogaName){
                 newIndex = index;
             }
         })

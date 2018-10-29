@@ -31,7 +31,7 @@ class AddRoute extends React.Component{
 
         const obj = {
             skala: this.props.skala,
-            name: newName,
+            droga: newName,
             wycena: newWycena,
             przejscia: 0,
             ocena: 0
