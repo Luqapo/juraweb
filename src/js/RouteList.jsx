@@ -70,7 +70,7 @@ class RouteList extends React.Component{
                 dataToSend.push(el);
             }
         });
-        console.log(dataToSend);
+        console.log(dataToSend, this.props.userIn);
 
 
         // fetch('http://localhost:3010/moje', {
