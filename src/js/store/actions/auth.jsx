@@ -42,8 +42,10 @@ export const addUser = (login, password, password2, email) => {
                     'Content-Type': 'application/json',
                 },
             })
+            .then( resp => resp.json())
             .then(function (response) {
                     console.log(response);
+                    //dispatch(authSucces(response));
                 })
             .catch(function (error) {
                     console.log(error);
@@ -65,6 +67,7 @@ export const auth = (login, password) => {
                 'Content-Type': 'application/json',
             },
         })
+        .then( resp => resp.json())
         .then(function (response) {
                 console.log(response);
             })
