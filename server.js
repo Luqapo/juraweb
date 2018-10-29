@@ -56,6 +56,22 @@ router.route('/skaly/:skala_id')
             .catch(err => console.log(err));
     })
 
+router.route('/droga/add')
+    .post((req,res) => {
+        console.log(req.body);
+        Droga.create({
+            skala: req.body.skala,
+            droga: req.body.droda,
+            wycena: req.body.wycena,
+            przejscia: req.body.przejscia,
+            ocena: req.body.ocena
+        }, (err, droga) => {
+            if(err) return res.status(500).send('There was problem registering the droga.')
+
+            res.status(200).send({ message:'Route added', droga});
+        })
+    })
+
 app.listen(PORT,  "0.0.0.0", () => {
     console.log(`Server listen at port ${PORT}`);
 })
