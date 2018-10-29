@@ -43,7 +43,7 @@ export const addUser = (login, password, password2, email) => {
                 },
             })
             .then(function (response) {
-                    console.log(response);
+                    console.log(response.body);
                 })
             .catch(function (error) {
                     console.log(error);
@@ -66,7 +66,7 @@ export const auth = (login, password) => {
             },
         })
         .then(function (response) {
-                console.log(response);
+                console.log(response.body);
             })
         .catch(function (error){
                 console.log(error);
