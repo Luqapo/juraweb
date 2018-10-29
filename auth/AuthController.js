@@ -23,7 +23,7 @@ router.post('/register', (req,res) => {
         const token = jwt.sign({ id: user._id }, config.secret, {
             expiresIn: 86400
         });
-        res.status(200).send({ auth: true, token: token });
+        res.status(200).json({ auth: true, token: token });
     });
 });
 
@@ -38,7 +38,7 @@ router.get('/me', (req,res) => {
             if (err) return res.status(500).send('There was a problem finding the user.');
             if(!user) return res.status(404).send('No user found');
         
-            res.status(200).send(user);
+            res.status(200).json(user);
         });
     });
 });
@@ -55,12 +55,12 @@ router.post('/login', (req,res) => {
             expiresIn: 86400
         });
 
-        res.status(200).send({ auth: true, token: token });
+        res.status(200).json({ auth: true, token: token });
     });
 });
 
 router.get('/logout', (req,res) => {
-    res.status(200).send({ auth: false, token: null });
+    res.status(200).json({ auth: false, token: null });
 });
 
 module.exports = router;
