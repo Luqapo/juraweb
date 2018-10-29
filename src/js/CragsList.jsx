@@ -55,7 +55,7 @@ class CragsList extends Component{
                 </div>
         )
         } else {
-            return <RouteList routeList={this.state.routeList} listToSend={this.state.listToSend} skalaName={this.state.skalaName}/>
+            return <RouteList routeList={this.state.routeList} listToSend={this.state.listToSend} skalaName={this.state.skala}/>
         }
     }
 }
