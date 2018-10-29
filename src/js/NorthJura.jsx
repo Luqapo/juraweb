@@ -16,7 +16,7 @@ class NorthJura extends React.Component{
 
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/regiony/north`)
+        fetch(`https://mojajura.herokuapp.com/api/regiony/north`)
             .then( resp => resp.json())
             .then( resp => {
                 let listElements = resp.map( el => <li key={el._id}><a href="#" onClick={this.handleSchow} data-rejon={el.rejon} data-id="3">{el.rejon}</a></li>);
@@ -42,7 +42,7 @@ class NorthJura extends React.Component{
 
             let rejonName = e.target.dataset.rejon;
 
-            fetch(`http://localhost:5000/api/rejony/${rejonName}`)
+            fetch(`https://mojajura.herokuapp.com/api/rejony/${rejonName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({

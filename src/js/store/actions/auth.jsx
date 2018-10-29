@@ -27,7 +27,7 @@ export const logOff = () => {
     };
 };
 
-export const addUser = (login, password, password2) => {
+export const addUser = (login, password, password2, email) => {
     if (login.length > 5 && password.length > 5 && password === password2 && email) {
         const newUser = {
             "login": login,
@@ -36,11 +36,19 @@ export const addUser = (login, password, password2) => {
         };
         return dispatch => {
             dispatch(authStart());
-            axios.post('http://localhost:3010/users', newUser)
-                .then(function (response) {
+            fetch('https://mojajura.herokuapp.com/api/auth/register', {
+                method : 'POST',
+                body : JSON.stringify({
+                    newUser
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(function (response) {
                     console.log(response);
                 })
-                .catch(function (error) {
+            .catch(function (error) {
                     console.log(error);
                 })
         }
@@ -50,8 +58,17 @@ export const addUser = (login, password, password2) => {
 export const auth = (login, password) => {
     return dispatch => {
         dispatch( authStart());
-        axios.get('http://localhost:3010/users')
-            .then(function (response) {
+        fetch('https://mojajura.herokuapp.com/api/auth/login', {
+            method : 'POST',
+            body : JSON.stringify({
+                login: login,
+                password: password
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(function (response) {
                 let logged = false;
 
                 response.data.forEach( el => {
@@ -66,7 +83,7 @@ export const auth = (login, password) => {
                     dispatch (authFail('błędne dane'));
                 };
             })
-            .catch(function (error){
+        .catch(function (error){
                 console.log(error);
                 dispatch(authFail(error));
             })
