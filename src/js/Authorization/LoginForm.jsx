@@ -59,14 +59,14 @@ class LoginForm extends React.Component{
             <input key="input1" className="InputElement" name="password2" onChange={this.handleChange} type="password" placeholder="Powtórz hasło"/>,
             <input key="input2" className="InputElement" name="email" onChange={this.handleChange} type="email" placeholder="Email"/>
         ];
-        // if (this.props.userIn){
-        //     return (
-        //         <div>
-        //             <h1>{this.props.userIn}</h1>
-        //             <h6><a href="#" onClick={this.handleLogOff}>Wyloguj</a></h6>
-        //         </div>
-        //     )
-        // } else {
+        if (this.props.userIn){
+            return (
+                <div>
+                    <h1>{this.props.userIn}</h1>
+                    <h6><a href="#" onClick={this.handleLogOff}>Wyloguj</a></h6>
+                </div>
+            )
+        } else {
             return (
                 <div className={showHideClassName}>
                     <section className="modal-main">
@@ -82,6 +82,7 @@ class LoginForm extends React.Component{
                     </section>
                 </div>
             )
+        }
     }
 
 }

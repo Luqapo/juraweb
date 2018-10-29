@@ -1,7 +1,8 @@
 import * as actionTypes from './actions/actionTypes';
 
 const initialSate = {
-    userLogged: ''
+    userLogged: '',
+    token: null
 }
 
 
@@ -10,12 +11,14 @@ const reducer = (state = initialSate,action) => {
     switch ( action.type ) {
         case actionTypes.AUTH_SUCCES:
             return {
-                userLogged: action.authData
+                userLogged: action.login,
+                token: action.token
             };
 
         case actionTypes.LOG_OFF:
             return {
-                userLogged: ''
+                userLogged: '',
+                token: null
             };
     }
     return state;
