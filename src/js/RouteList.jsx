@@ -15,7 +15,7 @@ class RouteList extends React.Component{
 
     componentDidMount(){
         let newRoutes = [...this.props.routeList];
-        let skala =  newRutes ? newRoutes[0].skala : null;
+        let skala =  newRoutes ? newRoutes[0].skala : null;
         this.setState({
             myRoutes: newRoutes,
             skala: skala
