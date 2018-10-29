@@ -8,7 +8,8 @@ class CragsList extends Component{
         this.state = {
             schowList: false,
             routesList: '',
-            listToSend: ''
+            listToSend: '',
+            skala: ''
         }
     }
 
@@ -23,7 +24,8 @@ class CragsList extends Component{
                     this.setState({
                         routeList: resp,
                         schowList: true,
-                        listToSend: newList
+                        listToSend: newList,
+                        skala: skalaName
                     })
             })   
 
@@ -53,7 +55,7 @@ class CragsList extends Component{
                 </div>
         )
         } else {
-            return <RouteList routeList={this.state.routeList} listToSend={this.state.listToSend} />
+            return <RouteList routeList={this.state.routeList} listToSend={this.state.listToSend} skalaName={this.state.skalaName}/>
         }
     }
 }

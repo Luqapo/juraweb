@@ -9,16 +9,13 @@ class RouteList extends React.Component{
         this.state = {
             myRoutes: [],
             addShow: false,
-            skala: ''
         }
     }
 
     componentDidMount(){
         let newRoutes = [...this.props.routeList];
-        let skala =  newRoutes[0].skala ? newRoutes[0].skala : null;
         this.setState({
-            myRoutes: newRoutes,
-            skala: skala
+            myRoutes: newRoutes
         })
     }
 
@@ -165,7 +162,7 @@ class RouteList extends React.Component{
                     </thead>
                     <tbody>
                     {rows}
-                    {this.state.addShow ? <AddRoute skala={this.state.skala}/> : null}
+                    {this.state.addShow ? <AddRoute skala={this.props.skalaName}/> : null}
                     </tbody>
                 </table>
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
