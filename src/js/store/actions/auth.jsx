@@ -28,10 +28,11 @@ export const logOff = () => {
 };
 
 export const addUser = (login, password, password2) => {
-    if (login.length > 5 && password.length > 5 && password === password2) {
+    if (login.length > 5 && password.length > 5 && password === password2 && email) {
         const newUser = {
             "login": login,
-            "password": password
+            "password": password,
+            "email": email
         };
         return dispatch => {
             dispatch(authStart());
