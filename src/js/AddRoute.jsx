@@ -40,7 +40,13 @@ class AddRoute extends React.Component{
 
         fetch('https://mojajura.herokuapp.com/api/droga/add', {
                 method : 'POST',
-                body : JSON.stringify( obj ),
+                body : JSON.stringify({
+                    skala: this.props.skala,
+                    droga: newName,
+                    wycena: newWycena,
+                    przejscia: 0,
+                    ocena: 0
+                }),
                 headers: {
                     'Content-Type': 'application/json',
                 },
