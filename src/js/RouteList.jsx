@@ -119,6 +119,7 @@ class RouteList extends React.Component{
     render(){
 
         let rows = [];
+        console.log(this.props.skalaName);
         this.props.routeList.forEach( el => rows.push(<tr key={el._id} data-droga={el.droga}><td>{el.droga}</td><td>{el.wycena}</td>
             <td>{el.przejscia}</td><td>{el.ocena}</td><td><input onChange={this.handleDate} type="date"/></td>
             <td><select onChange={this.handleStlye}>
