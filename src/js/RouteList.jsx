@@ -15,7 +15,7 @@ class RouteList extends React.Component{
 
     componentDidMount(){
         let newRoutes = [...this.props.routeList];
-        let skala = newRoutes[0].skala;
+        let skala =  newRutes ? newRoutes[0].skala : null;
         this.setState({
             myRoutes: newRoutes,
             skala: skala
@@ -23,8 +23,16 @@ class RouteList extends React.Component{
     }
 
     handleDate = (e) => {
-        let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
         let newRoutes = [...this.state.myRoutes];
+        let newIndex = null;
+
+        newRoutes.forEach((el,index) => {
+            if(el.dorga === drogaName){
+                newIndex = index;
+            }
+        })
+
         newRoutes[newIndex].date = e.target.value;
 
         this.setState({
