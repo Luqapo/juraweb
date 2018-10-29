@@ -41,8 +41,15 @@ class RouteList extends React.Component{
     }
 
     handleStlye = (e) => {
-        let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
         let newRoutes = [...this.state.myRoutes];
+        let newIndex = null;
+
+        newRoutes.forEach((el,index) => {
+            if(el.droga === drogaName){
+                newIndex = index;
+            }
+        })
         newRoutes[newIndex].styl = e.target.value.toUpperCase();
 
         this.setState({
@@ -51,8 +58,15 @@ class RouteList extends React.Component{
     }
 
     handleOcena = (e) => {
-        let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
         let newRoutes = [...this.state.myRoutes];
+        let newIndex = null;
+
+        newRoutes.forEach((el,index) => {
+            if(el.droga === drogaName){
+                newIndex = index;
+            }
+        })
         newRoutes[newIndex].ocena = e.target.value;
 
         this.setState({
@@ -61,8 +75,15 @@ class RouteList extends React.Component{
     }
 
     handleChecked = (e) => {
-        let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
         let newRoutes = [...this.state.myRoutes];
+        let newIndex = null;
+
+        newRoutes.forEach((el,index) => {
+            if(el.droga === drogaName){
+                newIndex = index;
+            }
+        })
         newRoutes[newIndex].checked = e.target.checked;
 
         this.setState({
