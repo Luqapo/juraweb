@@ -36,7 +36,7 @@ class Nav extends React.Component{
 
     handleLogin = () => {
         this.setState({
-            schowLog: true
+            schowLog: this.state.schowLog ? false : true
         })
     }
 
@@ -60,7 +60,7 @@ class Nav extends React.Component{
                     <li><a onClick={this.handleJura} href="#">KochamJure.pl</a></li>
                     <li><a onClick={this.handleList} href="#">Moje przejścia</a></li>
                     <li><input onClick={this.handleSerch} placeholder="Szukaj"/></li>
-                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog}/> : <li><a onClick={this.handleLogin} href="#">Login</a></li>}
+                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog} showHandle={this.handleLogin}/> : <li><a onClick={this.handleLogin} href="#">Login</a></li>}
                 </ul>
             </div>
         )

@@ -79,6 +79,7 @@ class LoginForm extends React.Component{
                             <input className="InputElement" type="submit" value="Wyślij"/>
                         </form>
                         {this.state.addUser ? null : <h6><a style={{width: '100%', textAlign: "center", display: "block"}} href="#" onClick={this.handleAdd}>Załóż konto</a></h6>}
+                        <h6><a style={{width: '100%', textAlign: "center", display: "block"}} href="#" onClick={this.props.showHandle}>Anuluj</a></h6>
                     </section>
                 </div>
             )

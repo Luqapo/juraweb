@@ -8,14 +8,17 @@ class RouteList extends React.Component{
 
         this.state = {
             myRoutes: [],
-            addShow: false
+            addShow: false,
+            skala: ''
         }
     }
 
     componentDidMount(){
         let newRoutes = [...this.props.routeList];
+        let skala = newRoutes[0].skala;
         this.setState({
-            myRoutes: newRoutes
+            myRoutes: newRoutes,
+            skala: skala
         })
     }
 
@@ -67,16 +70,17 @@ class RouteList extends React.Component{
                 dataToSend.push(el);
             }
         });
+        console.log(dataToSend);
 
 
-        fetch('http://localhost:3010/moje', {
-            method: "POST",
-            body:  JSON.stringify( {"data": dataToSend} ),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        // fetch('http://localhost:3010/moje', {
+        //     method: "POST",
+        //     body:  JSON.stringify( {"data": dataToSend} ),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
 
-        });
+        // });
 
     };
 
@@ -132,12 +136,12 @@ class RouteList extends React.Component{
                     </thead>
                     <tbody>
                     {rows}
-                    {this.state.addShow ? <AddRoute/> : null}
+                    {this.state.addShow ? <AddRoute skala={this.state.skala}/> : null}
                     </tbody>
                 </table>
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    { this.props.userIn ? <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button> : null}
-                    <button onClick={this.handleSend} style={{margin: '30px'}}>Dodaj przejścia</button>
+                    { this.props.userIn ? <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button> : null }
+                    { this.props.userIn ? <button onClick={this.handleSend} style={{margin: '30px'}}>Dodaj przejścia</button> : null }
                 </div>
             </div>
         )

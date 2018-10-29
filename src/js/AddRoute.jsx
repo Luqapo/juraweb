@@ -30,11 +30,11 @@ class AddRoute extends React.Component{
         let newWycena = this.state.wycena;
 
         const obj = {
-            "name": newName,
-            "wycena": newWycena,
-            "przejscia": 0,
-            "ocena": 0,
-            "comments": []
+            skala: this.props.skala,
+            name: newName,
+            wycena: newWycena,
+            przejscia: 0,
+            ocena: 0
         };
         console.log(obj);
     }
