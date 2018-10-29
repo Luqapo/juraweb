@@ -63,7 +63,7 @@ router.route('/droga/add')
         console.log(req.body);
         Droga.create({
             skala: req.body.skala,
-            droga: req.body.droda,
+            droga: req.body.droga,
             wycena: req.body.wycena,
             przejscia: req.body.przejscia,
             ocena: req.body.ocena
