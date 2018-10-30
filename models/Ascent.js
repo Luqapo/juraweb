@@ -7,6 +7,7 @@ const AscentSchema = mongoose.Schema({
     droga: String,
     wycena: String,
     towjaOcena: Number,
+    comment: String,
     styl: String,
     date: String
 });

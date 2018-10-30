@@ -18,8 +18,6 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const router = express.Router();
 app.use('/api', router);
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/auth', AuthController);
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -83,8 +81,6 @@ router.route('/droga/add')
 
 router.route('/ascents/add')
     .post((req,res) => {
-        console.log(req.body.user);
-        console.log(req.body.data);
 
         req.body.data.forEach(ascent => {
             const newAscent = new Ascent({
@@ -95,7 +91,8 @@ router.route('/ascents/add')
                 wycena: ascent.wycena,
                 towjaOcena: Number(ascent.ocena),
                 styl: ascent.styl,
-                date: ascent.date
+                date: ascent.date,
+                comment: ascent.comment
                 });
 
             newAscent.save()

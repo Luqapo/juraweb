@@ -13,7 +13,7 @@ class RouteList extends React.Component{
     }
 
     componentDidMount(){
-        let newRoutes = [...this.props.routeList];
+        let newRoutes = this.props.routeList.map(a => ({ ...a }));
         this.setState({
             myRoutes: newRoutes
         })
@@ -125,11 +125,29 @@ class RouteList extends React.Component{
         })
     }
 
+    handleComment = (e) => {
+        console.log(e.target.value);
+        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
+        let newRoutes = [...this.state.myRoutes];
+        let newIndex = null;
+
+        newRoutes.forEach((el,index) => {
+            if(el.droga === drogaName){
+                newIndex = index;
+            }
+        })
+        newRoutes[newIndex].comment = e.target.value;
+
+        this.setState({
+            myRoutes: newRoutes
+        })
+    }
+
     render(){
 
         let rows = [];
         this.props.routeList.forEach( el => rows.push(<tr key={el._id} data-droga={el.droga}><td>{el.droga}</td><td>{el.wycena}</td>
-            <td>{el.przejscia}</td><td>{el.ocena}</td><td><input onChange={this.handleDate} type="date"/></td>
+            <td>{el.przejscia}</td><td>{el.ocena}</td><td><textarea onChange={this.handleComment}/></td><td><input onChange={this.handleDate} type="date"/></td>
             <td><select onChange={this.handleStlye}>
                 <option value=""></option>
                 <option value="OS">OS</option>
@@ -161,8 +179,9 @@ class RouteList extends React.Component{
                     <tr>
                         <th>Nazwa</th>
                         <th>Wycena</th>
-                        <th>Ocena</th>
                         <th>Przejcia</th>
+                        <th>Ocena</th>
+                        <th>Komentarz</th>
                         <th>Data przejcia</th>
                         <th>Styl</th>
                         <th>Twoja ocena</th>
