@@ -6,20 +6,20 @@ const path = require('path');
 const Rejon = require('./models/Rejon');
 const Skala = require('./models/Skala');
 const Droga = require('./models/Droga');
+const Ascent = require('./models/Ascent');
 const AuthController = require('./auth/AuthController');
 
 const uri = 'mongodb://Luq:Haslo1@cluster0-shard-00-00-gw1sh.mongodb.net:27017,cluster0-shard-00-01-gw1sh.mongodb.net:27017,cluster0-shard-00-02-gw1sh.mongodb.net:27017/JuraDB?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 mongoose.connect(uri, {useNewUrlParser: true}, () => {
-    console.log('connected');
-    
+    console.log('connected');   
 });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const router = express.Router();
 app.use('/api', router);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/auth', AuthController);
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -42,25 +42,32 @@ router.route('/regiony/:region_id')
 router.route('/rejony/:rejon_id')
     .get((req,res) => {
         Skala.find({rejon: req.params.rejon_id})
-            .then(rejony => {
-                res.json(rejony);
-            })
-            .catch(err => console.log(err));
-    })
-
-router.route('/skaly/:skala_id')
-    .get((req,res) => {
-        console.log(req.params.skala_id);
-        Droga.find({skala: req.params.skala_id})
             .then(skaly => {
                 res.json(skaly);
             })
             .catch(err => console.log(err));
     })
 
+router.route('/skaly/:skala_id')
+    .get((req,res) => {
+        Droga.find({skala: req.params.skala_id})
+            .then(routes => {
+                res.json(routes);
+            })
+            .catch(err => console.log(err));
+    })
+
+router.route('/ascents/:user')
+    .get((req,res) => {
+        Ascent.find({user: req.params.user})
+            .then(ascents => {
+                res.json(ascents);
+            })
+            .catch(err => console.log(err));
+    })
+
 router.route('/droga/add')
     .post((req,res) => {
-        console.log(req.body);
         Droga.create({
             skala: req.body.skala,
             droga: req.body.droga,
@@ -72,6 +79,31 @@ router.route('/droga/add')
 
             res.status(200).send({ message:'Route added', droga});
         })
+    })
+
+router.route('/ascents/add')
+    .post((req,res) => {
+        console.log(req.body.user);
+        console.log(req.body.data);
+
+        req.body.data.forEach(ascent => {
+            const newAscent = new Ascent({
+                user: req.body.user,
+                rejon: req.body.rejon,
+                skala: ascent.skala,
+                droga: ascent.droga,
+                wycena: ascent.wycena,
+                towjaOcena: Number(ascent.ocena),
+                styl: ascent.styl,
+                date: ascent.date
+                });
+
+            newAscent.save()
+                .then(result => {
+                    res.status(200).send({ message:'Ascent added', result });
+                })
+                .catch(err => res.status(500).send({ message: 'There was problem registering the ascents.', err }));
+        });
     })
 
 app.listen(PORT,  "0.0.0.0", () => {

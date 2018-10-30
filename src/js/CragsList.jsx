@@ -9,23 +9,26 @@ class CragsList extends Component{
             schowList: false,
             routesList: '',
             listToSend: '',
-            skala: ''
+            skala: '',
+            rejon: ''
         }
     }
 
     handleList = (e) => {
         let skalaName = e.target.dataset.skala;
         let newArr = [...this.props.sklayToShow];
+        let newRejon = newArr[0].rejon
         let newList = newArr.map( el => <li key={el._id}><a onClick={this.handleList} href="#" data-skala={el.skala}>{el.skala}</a></li>);
 
-        fetch(`https://mojajura.herokuapp.com/api/skaly/${skalaName}`)
+        fetch(`http://localhost:5000/api/skaly/${skalaName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({
                         routeList: resp,
                         schowList: true,
                         listToSend: newList,
-                        skala: skalaName
+                        skala: skalaName,
+                        rejon: newRejon
                     })
             })   
 
@@ -55,7 +58,11 @@ class CragsList extends Component{
                 </div>
         )
         } else {
-            return <RouteList routeList={this.state.routeList} listToSend={this.state.listToSend} skalaName={this.state.skala}/>
+            return <RouteList 
+                        routeList={this.state.routeList} 
+                        listToSend={this.state.listToSend} 
+                        skalaName={this.state.skala}
+                        rejonName={this.state.rejon}/>
         }
     }
 }

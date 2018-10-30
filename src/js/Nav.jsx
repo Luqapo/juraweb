@@ -24,7 +24,9 @@ class Nav extends React.Component{
 
     handleList = () => {
         if(typeof this.props.handleList === 'function'){
-            this.props.handleList();
+            if(this.props.userIn){
+                this.props.handleList();
+            }
         }
     }
 
@@ -42,15 +44,15 @@ class Nav extends React.Component{
 
     handleSerch = () => {
         console.log("szukam");
-        fetch(`http://localhost:3010/regiony?name_like=Pazurek`)
-            .then( resp => resp.json())
-            .then( resp => {
-                console.log(resp)
+        // fetch(`http://localhost:3010/regiony?name_like=Pazurek`)
+        //     .then( resp => resp.json())
+        //     .then( resp => {
+        //         console.log(resp)
 
-            })
-            .catch( err => {
-                console.log('Błąd!', err);
-            });
+        //     })
+        //     .catch( err => {
+        //         console.log('Błąd!', err);
+        //     });
     }
 
     render(){

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 
 class MyList extends React.Component{
@@ -12,15 +13,15 @@ class MyList extends React.Component{
 
 
     componentDidMount() {
-        fetch(`http://localhost:3010/moje?name=data`)
+        fetch(`http://localhost:5000/api/ascents/${this.props.userIn}`)
             .then( resp => resp.json())
             .then( resp => {
-                let arr = [...resp];
-                let newArr = [];
-                arr.forEach(el => el.data.forEach( route => newArr.push(route)));
+                // let arr = [...resp];
+                // let newArr = [];
+                // arr.forEach(el => el.data.forEach( route => newArr.push(route)));
 
                 this.setState({
-                    list: newArr
+                    list: resp
                 })
 
             })
@@ -33,8 +34,8 @@ class MyList extends React.Component{
 
         let rows = [];
         const myList = [...this.state.list];
-        myList.forEach( (el,index) => rows.push(<tr key={index}><td>{el.date}</td><td>{el.wycena}</td><td>{el.styl}</td>
-            <td>{el.name}</td><td>xxx</td><td>yyy</td><td>{el.ocena}</td><td><button>Edytuj</button></td></tr>))
+        myList.forEach( el => rows.push(<tr key={el._id}><td>{el.date}</td><td>{el.wycena}</td><td>{el.styl}</td>
+            <td>{el.droga}</td><td>{`${el.rejon}/${el.skala}`}</td><td>yyy</td><td>{el.towjaOcena}</td><td><button>Edytuj</button></td></tr>))
 
 
         return (
@@ -59,4 +60,10 @@ class MyList extends React.Component{
     }
 }
 
-export default MyList;
+const mapStateToProps = state => {
+    return {
+        userIn: state.userLogged
+    };
+};
+
+export default connect(mapStateToProps)(MyList);
