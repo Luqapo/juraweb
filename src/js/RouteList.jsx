@@ -98,7 +98,7 @@ class RouteList extends React.Component{
         });
         console.log(dataToSend, this.props.userIn);
 
-        fetch('http://localhost:5000/api/ascents/add', {
+        fetch('https://mojajura.herokuapp.com/api/ascents/add', {
                 method : 'POST',
                 body : JSON.stringify({
                     user: this.props.userIn,
@@ -126,7 +126,6 @@ class RouteList extends React.Component{
     }
 
     handleComment = (e) => {
-        console.log(e.target.value);
         let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
         let newRoutes = [...this.state.myRoutes];
         let newIndex = null;

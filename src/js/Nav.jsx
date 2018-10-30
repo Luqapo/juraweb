@@ -42,8 +42,8 @@ class Nav extends React.Component{
         })
     }
 
-    handleSerch = () => {
-        console.log("szukam");
+    handleSerch = (e) => {
+        console.log(e.target.value);
         // fetch(`http://localhost:3010/regiony?name_like=Pazurek`)
         //     .then( resp => resp.json())
         //     .then( resp => {
@@ -61,7 +61,7 @@ class Nav extends React.Component{
                 <ul className="nav">
                     <li><a onClick={this.handleJura} href="#">KochamJure.pl</a></li>
                     <li><a onClick={this.handleList} href="#">Moje przejścia</a></li>
-                    <li><input onClick={this.handleSerch} placeholder="Szukaj"/></li>
+                    <li><input onChange={this.handleSerch} placeholder="Szukaj"/></li>
                     { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog} showHandle={this.handleLogin}/> : <li><a onClick={this.handleLogin} href="#">Login</a></li>}
                 </ul>
             </div>

@@ -32,7 +32,7 @@ export const addUser = (login, password, password2, email) => {
     if (login.length > 5 && password.length > 5 && password === password2 && email.length > 5) {
         return dispatch => {
             dispatch(authStart());
-            fetch('http://localhost:5000/api/auth/register', {
+            fetch('https://mojajura.herokuapp.com/api/auth/register', {
                 method : 'POST',
                 body : JSON.stringify({
                     login: login,
@@ -58,7 +58,7 @@ export const addUser = (login, password, password2, email) => {
 export const auth = (login, password) => {
     return dispatch => {
         dispatch( authStart());
-        fetch('http://localhost:5000/api/auth/login', {
+        fetch('https://mojajura.herokuapp.com/api/auth/login', {
             method : 'POST',
             body : JSON.stringify({
                 login: login,

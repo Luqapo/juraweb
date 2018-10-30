@@ -81,7 +81,6 @@ router.route('/droga/add')
 
 router.route('/ascents/add')
     .post((req,res) => {
-
         req.body.data.forEach(ascent => {
             const newAscent = new Ascent({
                 user: req.body.user,
@@ -97,11 +96,12 @@ router.route('/ascents/add')
 
             newAscent.save()
                 .then(result => {
-                    res.status(200).send({ message:'Ascent added', result });
+                    console.log('Ascents added');
                 })
-                .catch(err => res.status(500).send({ message: 'There was problem registering the ascents.', err }));
-        });
-    })
+                .catch(err => console.log(err));
+         });
+         res.send({ message:'Ascent added' })
+    });
 
 app.listen(PORT,  "0.0.0.0", () => {
     console.log(`Server listen at port ${PORT}`);

@@ -38,7 +38,7 @@ class AddRoute extends React.Component{
         };
         console.log(obj);
 
-        fetch('http://localhost:5000/api/droga/add', {
+        fetch('https://mojajura.herokuapp.com/api/droga/add', {
                 method : 'POST',
                 body : JSON.stringify({
                     skala: this.props.skala,
