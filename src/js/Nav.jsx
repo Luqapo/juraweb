@@ -9,7 +9,8 @@ class Nav extends React.Component{
 
         this.state = {
             loggedIn: false,
-            schowLog: false
+            schowLog: false,
+            search: ''
         }
     }
 
@@ -43,16 +44,33 @@ class Nav extends React.Component{
     }
 
     handleSerch = (e) => {
-        console.log(e.target.value);
-        // fetch(`http://localhost:3010/regiony?name_like=Pazurek`)
-        //     .then( resp => resp.json())
-        //     .then( resp => {
-        //         console.log(resp)
+        this.setState({
+            search: e.target.value
+        });
+    }
 
-        //     })
-        //     .catch( err => {
-        //         console.log('Błąd!', err);
-        //     });
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state.search);
+        fetch('http://localhost:5000/api/search', {
+                method : 'POST',
+                body : JSON.stringify({
+                    search: this.state.search
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then( resp => resp.json())
+            .then(function (response) {
+                    console.log(response);
+                })
+            .catch(function (error) {
+                    console.log(error);
+                })
+            this.setState({
+                search: ''
+            })
     }
 
     render(){
@@ -61,7 +79,15 @@ class Nav extends React.Component{
                 <ul className="nav">
                     <li><a onClick={this.handleJura} href="#">KochamJure.pl</a></li>
                     <li><a onClick={this.handleList} href="#">Moje przejścia</a></li>
-                    <li><input onChange={this.handleSerch} placeholder="Szukaj"/></li>
+                    <li>
+                        <form onSubmit={this.handleSubmit}>
+                            <input onChange={this.handleSerch} placeholder="Szukaj"/>
+                            <input 
+                                style={{ background: 'url("../img/search.svg")', border: '0', height: '20px', width: '20px'}} 
+                                type="submit"
+                                alt="szukaj"/>
+                        </form>
+                        </li>
                     { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog} showHandle={this.handleLogin}/> : <li><a onClick={this.handleLogin} href="#">Login</a></li>}
                 </ul>
             </div>

@@ -79,6 +79,30 @@ router.route('/droga/add')
         })
     })
 
+router.route('/search')
+    .post((req,res) => {
+        Droga.find({ droga: req.body.search },(err, result) => {
+            if(err) return res.send(err);
+            if(result.lengt > 0){
+            Skala.find({skala: result[0].skala},(err, skala) => {
+                if(err) return res.send(err);
+                Rejon.find({rejon: skala[0].rejon},(err,rejon) => {
+                    if(err) return res.send(err);
+                    res.json({
+                        'region': rejon[0].region, 
+                        'rejon': rejon[0].rejon, 
+                        'skala': skala[0].skala, 
+                        'droga': result[0].droga
+                    })
+                })
+            }) 
+        } else {
+            res.send({message: 'Nie znaleziono'})
+        }
+        });
+        
+    })
+
 router.route('/ascents/add')
     .post((req,res) => {
         req.body.data.forEach(ascent => {

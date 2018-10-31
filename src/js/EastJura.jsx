@@ -16,7 +16,7 @@ class EastJura extends React.Component{
 
 
     componentDidMount() {
-        fetch(`https://mojajura.herokuapp.com/api/regiony/east`)
+        fetch(`http://localhost:5000/api/regiony/east`)
             .then( resp => resp.json())
             .then( resp => {
                 let listElements = resp.map( el => <li key={el._id}><a href="#" onClick={this.handleSchow} data-rejon={el.rejon} data-id="1">{el.rejon}</a></li>);
@@ -42,7 +42,7 @@ class EastJura extends React.Component{
 
             let rejonName = e.target.dataset.rejon;
 
-            fetch(`https://mojajura.herokuapp.com/api/rejony/${rejonName}`)
+            fetch(`http://localhost:5000/api/rejony/${rejonName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({

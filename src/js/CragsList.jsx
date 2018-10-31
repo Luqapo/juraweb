@@ -20,7 +20,7 @@ class CragsList extends Component{
         let newRejon = newArr[0].rejon
         let newList = newArr.map( el => <li key={el._id}><a onClick={this.handleList} href="#" data-skala={el.skala}>{el.skala}</a></li>);
 
-        fetch(`https://mojajura.herokuapp.com/api/skaly/${skalaName}`)
+        fetch(`http://localhost:5000/api/skaly/${skalaName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({

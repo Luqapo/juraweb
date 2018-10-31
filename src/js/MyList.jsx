@@ -13,13 +13,10 @@ class MyList extends React.Component{
 
 
     componentDidMount() {
-        fetch(`https://mojajura.herokuapp.com/api/ascents/${this.props.userIn}`)
+        fetch(`http://localhost:5000/api/ascents/${this.props.userIn}`)
             .then( resp => resp.json())
             .then( resp => {
-                // let arr = [...resp];
-                // let newArr = [];
-                // arr.forEach(el => el.data.forEach( route => newArr.push(route)));
-
+                
                 this.setState({
                     list: resp
                 })
