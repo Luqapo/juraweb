@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import LoginForm from "./Authorization/LoginForm.jsx";
 import { connect } from 'react-redux';
@@ -39,7 +39,6 @@ class Nav extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.search);
         fetch('http://localhost:5000/api/search', {
                 method : 'POST',
                 body : JSON.stringify({
@@ -59,6 +58,7 @@ class Nav extends React.Component{
             this.setState({
                 search: ''
             })
+            this.props.history.push('/search');
     }
 
     render(){
@@ -95,4 +95,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps) (Nav);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Nav));

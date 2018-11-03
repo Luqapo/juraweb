@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import MojaJura from "./MojaJura.jsx";
 import MyList from "./MyList.jsx";
 import Nav from "./Nav.jsx";
+import SearchResult from './SearchResult/SearchResult.jsx'
 
 
 
@@ -19,6 +20,7 @@ import Nav from "./Nav.jsx";
                     <Nav/>
                     <Switch>
                         <Route path="/mylist" component={MyList} />
+                        <Route path="/search" component={SearchResult} />
                         <Route path="/" exact component={MojaJura} />
                     </Switch>
                 </div>
