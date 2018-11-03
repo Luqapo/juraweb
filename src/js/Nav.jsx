@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
+
 import LoginForm from "./Authorization/LoginForm.jsx";
 import { connect } from 'react-redux';
 import * as actions from "./store/actions/auth.jsx";
@@ -21,20 +23,6 @@ class Nav extends React.Component{
             schowLog: false
         });
         this.props.logOff();
-    }
-
-    handleList = () => {
-        if(typeof this.props.handleList === 'function'){
-            if(this.props.userIn){
-                this.props.handleList();
-            }
-        }
-    }
-
-    handleJura = () => {
-        if(typeof this.props.handleJura === 'function'){
-            this.props.handleJura();
-        }
     }
 
     handleLogin = () => {
@@ -77,8 +65,8 @@ class Nav extends React.Component{
         return (
             <div>
                 <ul className="nav">
-                    <li><a onClick={this.handleJura} href="#">KochamJure.pl</a></li>
-                    <li><a onClick={this.handleList} href="#">Moje przejścia</a></li>
+                    <li><NavLink to="/">KochamJure.pl</NavLink></li>
+                    <li><NavLink to="/mylist">Moje przejścia</NavLink></li>
                     <li>
                         <form onSubmit={this.handleSubmit}>
                             <input onChange={this.handleSerch} placeholder="Szukaj"/>

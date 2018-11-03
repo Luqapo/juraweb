@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { Route, Switch } from 'react-router-dom';
+
 import MojaJura from "./MojaJura.jsx";
 import MyList from "./MyList.jsx";
 import Nav from "./Nav.jsx";
@@ -11,44 +12,17 @@ import Nav from "./Nav.jsx";
 
 
     class App extends React.Component{
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                myList: false,
-                userLogged: ''
-            }
-        }
-
-        handleList = () => {
-            this.setState({
-                myList: true
-            })
-        }
-
-        handleJura = () => {
-            this.setState({
-                myList: false
-            })
-        }
 
         render(){
-
-            if(this.state.myList === false) {
             return (
                 <div>
-                    <Nav handleList={this.handleList} handleJura={this.handleJura}/>
-                    <MojaJura/>
+                    <Nav/>
+                    <Switch>
+                        <Route path="/mylist" component={MyList} />
+                        <Route path="/" exact component={MojaJura} />
+                    </Switch>
                 </div>
-            )
-            } else {
-                return (
-                    <div>
-                        <Nav handleList={this.handleList} handleJura={this.handleJura}/>
-                        <MyList/>
-                    </div>
-                )
-            }
+            );
         }
     }
 
