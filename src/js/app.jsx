@@ -6,12 +6,6 @@ import MyList from "./MyList.jsx";
 import Nav from "./Nav.jsx";
 import SearchResult from './SearchResult/SearchResult.jsx'
 
-
-
-
-
-
-
     class App extends React.Component{
 
         render(){

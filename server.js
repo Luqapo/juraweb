@@ -83,7 +83,7 @@ router.route('/search')
     .post((req,res) => {
         Droga.find({ droga: req.body.search },(err, result) => {
             if(err) return res.send(err);
-            if(result.lengt > 0){
+            if(result.length > 0){
             Skala.find({skala: result[0].skala},(err, skala) => {
                 if(err) return res.send(err);
                 Rejon.find({rejon: skala[0].rejon},(err,rejon) => {

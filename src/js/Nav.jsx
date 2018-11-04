@@ -49,16 +49,18 @@ class Nav extends React.Component{
                 },
             })
             .then( resp => resp.json())
-            .then(function (response) {
+            .then( response => {
                     console.log(response);
+                    console.log(this.props);
+                    this.props.history.push('/search', response);
                 })
-            .catch(function (error) {
+            .catch( error => {
                     console.log(error);
                 })
             this.setState({
                 search: ''
             })
-            this.props.history.push('/search');
+               
     }
 
     render(){
