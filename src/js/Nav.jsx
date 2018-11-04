@@ -77,8 +77,8 @@ class Nav extends React.Component{
                                 type="submit"
                                 alt="szukaj"/>
                         </form>
-                        </li>
-                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog} showHandle={this.handleLogin}/> : <li><a onClick={this.handleLogin} href="#">Login</a></li>}
+                    </li>
+                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog} showHandle={this.handleLogin}/> : <li><button style={{width: '100px'}} onClick={this.handleLogin} >Login</button></li>}
                 </ul>
             </div>
         )

@@ -63,7 +63,7 @@ class LoginForm extends React.Component{
             return (
                 <div>
                     <h1>{this.props.userIn}</h1>
-                    <h6><a href="#" onClick={this.handleLogOff}>Wyloguj</a></h6>
+                    <h6><button onClick={this.handleLogOff}>Wyloguj</button></h6>
                 </div>
             )
         } else {
@@ -78,8 +78,8 @@ class LoginForm extends React.Component{
                              : null}
                             <input className="InputElement" type="submit" value="Wyślij"/>
                         </form>
-                        {this.state.addUser ? null : <h6><a style={{width: '100%', textAlign: "center", display: "block"}} href="#" onClick={this.handleAdd}>Załóż konto</a></h6>}
-                        <h6><a style={{width: '100%', textAlign: "center", display: "block"}} href="#" onClick={this.props.showHandle}>Anuluj</a></h6>
+                        {this.state.addUser ? null : <h6><button style={{width: '90%', textAlign: "center", display: "block"}} onClick={this.handleAdd}>Załóż konto</button></h6>}
+                        <h6><button style={{width: '90%', textAlign: "center", display: "block"}} onClick={this.props.showHandle}>Anuluj</button></h6>
                     </section>
                 </div>
             )
