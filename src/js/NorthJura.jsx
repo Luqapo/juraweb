@@ -19,7 +19,13 @@ class NorthJura extends React.Component{
         fetch(`http://localhost:5000/api/regiony/north`)
             .then( resp => resp.json())
             .then( resp => {
-                let listElements = resp.map( el => <li key={el._id}><a href="#" onClick={this.handleSchow} data-rejon={el.rejon} data-id="3">{el.rejon}</a></li>);
+                let listElements = resp.map( el => <li 
+                                                        key={el._id}><a 
+                                                        href="#" 
+                                                        onClick={this.handleSchow} 
+                                                        data-rejon={el.rejon} 
+                                                        data-id="3">{el.rejon}</a>
+                                                    </li>);
 
                 this.setState({
                     data: listElements
@@ -58,7 +64,10 @@ class NorthJura extends React.Component{
 
         if(this.props.schowNorth === false){
             return (
-                <div style={{flex: this.props.flexNorth,background: 'url("../img/Rzędkowice.jpg")'}} data-id="3" className="north" onClick={this.handleClick}>
+                <div style={{flex: this.props.flexNorth,
+                            background: 'url("../img/Rzędkowice.jpg")'}} 
+                        data-id="3" className="north" 
+                        onClick={this.handleClick}>
                     <h1 data-id="3"><a href="#" data-id="3">Jura Północna</a></h1>
                     <div style={style}>
                         <ul>
@@ -68,7 +77,9 @@ class NorthJura extends React.Component{
                 </div>
             )
         } else if(this.props.schowNorth === true) {
-            return <CragsList background={this.state.background} sklayToShow={this.state.sklayToShow} data={this.state.data}/>
+            return <CragsList background={this.state.background} 
+                        sklayToShow={this.state.sklayToShow} 
+                        data={this.state.data}/>
         }
     }
 }

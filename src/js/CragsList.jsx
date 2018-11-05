@@ -18,7 +18,10 @@ class CragsList extends Component{
         let skalaName = e.target.dataset.skala;
         let newArr = [...this.props.sklayToShow];
         let newRejon = newArr[0].rejon
-        let newList = newArr.map( el => <li key={el._id}><a onClick={this.handleList} href="#" data-skala={el.skala}>{el.skala}</a></li>);
+        let newList = newArr.map( el => <li key={el._id}>
+                                            <a onClick={this.handleList} 
+                                            href="#" data-skala={el.skala}>{el.skala}</a>
+                                        </li>);
 
         fetch(`http://localhost:5000/api/skaly/${skalaName}`)
             .then( resp => resp.json())
@@ -39,22 +42,27 @@ class CragsList extends Component{
 
         let newArr = [...this.props.sklayToShow];
 
-        let newList = newArr.map( el => <li key={el._id}><a onClick={this.handleList} href="#" data-skala={el.skala}>{el.skala}</a></li>)
+        let newList = newArr.map( el => <li key={el._id}>
+                                            <a onClick={this.handleList} 
+                                            href="#" data-skala={el.skala}>{el.skala}</a>
+                                        </li>)
 
 
         if(this.state.schowList === false){
             return (
-                <div style={{width: '100%', background: this.props.background, backgroundSize: 'cover'}}>
-        <div className="upperList">
-                <ul>
-                {this.props.data}
-        </ul>
-            </div>
-            <div className="downList">
-                <ul>
-                {newList}
-                </ul>
-                </div>
+                <div style={{width: '100%',
+                        background: this.props.background,
+                        backgroundSize: 'cover'}}>
+                    <div className="upperList">
+                            <ul>
+                            {this.props.data}
+                            </ul>
+                    </div>
+                    <div className="downList">
+                            <ul>
+                            {newList}
+                            </ul>
+                    </div>
                 </div>
         )
         } else {

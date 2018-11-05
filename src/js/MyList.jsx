@@ -31,8 +31,15 @@ class MyList extends React.Component{
 
         let rows = [];
         const myList = [...this.state.list];
-        myList.forEach( el => rows.push(<tr key={el._id}><td>{el.date}</td><td>{el.wycena}</td><td>{el.styl}</td>
-            <td>{el.droga}</td><td>{`${el.rejon}/${el.skala}`}</td><td>{el.comment}</td><td>{el.towjaOcena}</td><td><button>Edytuj</button></td></tr>))
+        myList.forEach( el => rows.push(<tr key={el._id}>
+                                            <td>{el.date}</td>
+                                            <td>{el.wycena}</td>
+                                            <td>{el.styl}</td>
+                                            <td>{el.droga}</td>
+                                            <td>{`${el.rejon}/${el.skala}`}</td>
+                                            <td>{el.comment}</td>
+                                            <td>{el.towjaOcena}</td>
+                                            <td><button>Edytuj</button></td></tr>))
 
 
         return (

@@ -73,12 +73,20 @@ class Nav extends React.Component{
                         <form onSubmit={this.handleSubmit}>
                             <input onChange={this.handleSerch} placeholder="Szukaj"/>
                             <input 
-                                style={{ background: 'url("../img/search.svg")', border: '0', height: '20px', width: '20px'}} 
+                                style={{ background: 'url("../img/search.svg")', 
+                                         border: '0', 
+                                         height: '20px', 
+                                         width: '20px'}} 
                                 type="submit"
                                 alt="szukaj"/>
                         </form>
                     </li>
-                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} show={this.state.schowLog} showHandle={this.handleLogin}/> : <li><button style={{width: '100px'}} onClick={this.handleLogin} >Login</button></li>}
+                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} 
+                                                        show={this.state.schowLog} 
+                                                        showHandle={this.handleLogin}/> : 
+                                            <li><button style={{width: '100px'}} 
+                                                        onClick={this.handleLogin} >Login</button>
+                                            </li>}
                 </ul>
             </div>
         )

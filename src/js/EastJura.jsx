@@ -19,7 +19,13 @@ class EastJura extends React.Component{
         fetch(`http://localhost:5000/api/regiony/east`)
             .then( resp => resp.json())
             .then( resp => {
-                let listElements = resp.map( el => <li key={el._id}><a href="#" onClick={this.handleSchow} data-rejon={el.rejon} data-id="1">{el.rejon}</a></li>);
+                let listElements = resp.map( el => <li 
+                                                        key={el._id}><a 
+                                                        href="#" 
+                                                        onClick={this.handleSchow} 
+                                                        data-rejon={el.rejon} 
+                                                        data-id="1">{el.rejon}</a>
+                                                    </li>);
 
                 this.setState({
                     data: listElements
@@ -58,7 +64,12 @@ class EastJura extends React.Component{
 
         if(this.props.schowEast === false){
             return (
-                <div style={{flex: this.props.flexEast,background: 'url("../img/dupa_slonia.jpg")', backgroundSize: 'cover'}} data-id="1" className="east" onClick={this.handleClick}>
+                <div style={{flex: this.props.flexEast,
+                             background: 'url("../img/dupa_slonia.jpg")', 
+                             backgroundSize: 'cover'}} 
+                     data-id="1" 
+                     className="east" 
+                     onClick={this.handleClick}>
                     <h1 data-id="1"><a href="#" data-id="1">Jura Południowa</a></h1>
                     <div style={style}>
                         <ul>
@@ -68,7 +79,9 @@ class EastJura extends React.Component{
                 </div>
             )
         } else if(this.props.schowEast === true) {
-            return <CragsList background={this.state.background} sklayToShow={this.state.sklayToShow} data={this.state.data}/>
+            return <CragsList background={this.state.background} 
+                              sklayToShow={this.state.sklayToShow} 
+                              data={this.state.data}/>
         }
     }
 }

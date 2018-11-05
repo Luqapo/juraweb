@@ -145,8 +145,14 @@ class RouteList extends React.Component{
     render(){
 
         let rows = [];
-        this.props.routeList.forEach( el => rows.push(<tr key={el._id} data-droga={el.droga}><td>{el.droga}</td><td>{el.wycena}</td>
-            <td>{el.przejscia}</td><td>{el.ocena}</td><td><textarea onChange={this.handleComment}/></td><td><input onChange={this.handleDate} type="date"/></td>
+        this.props.routeList.forEach( el => rows.push(<tr key={el._id} 
+                                                          data-droga={el.droga}>
+            <td>{el.droga}</td>
+            <td>{el.wycena}</td>
+            <td>{el.przejscia}</td>
+            <td>{el.ocena}</td>
+            <td><textarea onChange={this.handleComment}/></td>
+            <td><input onChange={this.handleDate} type="date"/></td>
             <td><select onChange={this.handleStlye}>
                 <option value=""></option>
                 <option value="OS">OS</option>
@@ -193,8 +199,10 @@ class RouteList extends React.Component{
                     </tbody>
                 </table>
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    { this.props.userIn ? <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button> : null }
-                    { this.props.userIn ? <button onClick={this.handleSend} style={{margin: '30px'}}>Dodaj przejścia</button> : null }
+                    { this.props.userIn ? <button onClick={this.handleAdd} 
+                                                style={{margin: '30px'}}>Dodaj drogę</button> : null }
+                    { this.props.userIn ? <button onClick={this.handleSend} 
+                                                style={{margin: '30px'}}>Dodaj przejścia</button> : null }
                 </div>
             </div>
         )

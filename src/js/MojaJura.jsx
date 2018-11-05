@@ -70,9 +70,18 @@ class MojaJura extends React.Component{
     render(){
         return (
             <div className="mainContainer">
-                <EastJura hanldeFlex={this.hanldeFlex} flexEast={this.state.flexEast} handleSchow={this.handleSchow} schowEast={this.state.schowEast}/>
-                <CenterJura hanldeFlex={this.hanldeFlex} flexCenter={this.state.flexCenter} handleSchow={this.handleSchow} schowCenter={this.state.schowCenter}/>
-                <NorthJura hanldeFlex={this.hanldeFlex} flexNorth={this.state.flexNorth} handleSchow={this.handleSchow} schowNorth={this.state.schowNorth}/>
+                <EastJura hanldeFlex={this.hanldeFlex} 
+                    flexEast={this.state.flexEast} 
+                    handleSchow={this.handleSchow} 
+                    schowEast={this.state.schowEast}/>
+                <CenterJura hanldeFlex={this.hanldeFlex} 
+                    flexCenter={this.state.flexCenter} 
+                    handleSchow={this.handleSchow} 
+                    schowCenter={this.state.schowCenter}/>
+                <NorthJura hanldeFlex={this.hanldeFlex} 
+                    flexNorth={this.state.flexNorth} 
+                    handleSchow={this.handleSchow} 
+                    schowNorth={this.state.schowNorth}/>
             </div>
         )
     }
