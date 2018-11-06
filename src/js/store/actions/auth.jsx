@@ -45,7 +45,6 @@ export const addUser = (login, password, password2, email) => {
             })
             .then( resp => resp.json())
             .then(function (response) {
-                    console.log(response);
                     dispatch(authSucces(login, response.token));
                 })
             .catch(function (error) {
