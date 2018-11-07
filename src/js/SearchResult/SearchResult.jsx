@@ -10,7 +10,7 @@ class SearchResult extends Component{
             result = <h3>{`${serchResult.rejon}  >  ${serchResult.skala}  >  ${serchResult.droga}`}</h3>;
         }
         return (
-            <div>
+            <div className="SearchResults">
                 {result}    
             </div>
         )

@@ -16,7 +16,7 @@ class NorthJura extends React.Component{
 
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/regiony/north`)
+        fetch(`https://mojajura.herokuapp.com/api/regiony/north`)
             .then( resp => resp.json())
             .then( resp => {
                 let listElements = resp.map( el => <li 
@@ -48,7 +48,7 @@ class NorthJura extends React.Component{
 
             let rejonName = e.target.dataset.rejon;
 
-            fetch(`http://localhost:5000/api/rejony/${rejonName}`)
+            fetch(`https://mojajura.herokuapp.com/api/rejony/${rejonName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({
@@ -65,7 +65,8 @@ class NorthJura extends React.Component{
         if(this.props.schowNorth === false){
             return (
                 <div style={{flex: this.props.flexNorth,
-                            background: 'url("../img/Rzędkowice.jpg")'}} 
+                            background: 'url("../img/Rzędkowice.jpg")',
+                            backgroundSize: 'cover'}} 
                         data-id="3" className="north" 
                         onClick={this.handleClick}>
                     <h1 data-id="3"><a href="#" data-id="3">Jura Północna</a></h1>

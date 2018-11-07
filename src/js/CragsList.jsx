@@ -23,7 +23,7 @@ class CragsList extends Component{
                                             href="#" data-skala={el.skala}>{el.skala}</a>
                                         </li>);
 
-        fetch(`http://localhost:5000/api/skaly/${skalaName}`)
+        fetch(`https://mojajura.herokuapp.com/api/skaly/${skalaName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({

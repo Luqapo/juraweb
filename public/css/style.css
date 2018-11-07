@@ -115,7 +115,7 @@ td{
 button {
     height: 25px;
     margin: 5px 14px;
-    border: 1px solid darkblue;
+    border: 1px solid cornflowerblue;
     border-radius: 10px;
     background-color: white;
     color: darkblue;
@@ -125,9 +125,9 @@ button {
 button:hover {
     height: 25px;
     margin: 5px 14px;
-    border: 1px solid darkblue;
+    border: 1px solid cornflowerblue;
     border-radius: 10px;
-    background-color: darkblue;
+    background-color: cornflowerblue;
     color: white;
     padding: 4px;
 }
@@ -190,4 +190,8 @@ table, th, td {
 .InputElement:focus {
     outline: none;
     background-color: #ccc;
+}
+
+.SearchResults {
+    padding: 50px;
 }

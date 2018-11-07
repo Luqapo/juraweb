@@ -39,7 +39,7 @@ class Nav extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:5000/api/search', {
+        fetch('https://mojajura.herokuapp.com/api/search', {
                 method : 'POST',
                 body : JSON.stringify({
                     search: this.state.search
@@ -82,8 +82,10 @@ class Nav extends React.Component{
                     { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} 
                                                         show={this.state.schowLog} 
                                                         showHandle={this.handleLogin}/> : 
-                                            <li><button style={{width: '100px'}} 
-                                                        onClick={this.handleLogin} >Login</button>
+                                            <li>
+                                                <button style={{width: '100px'}} 
+                                                        onClick={this.handleLogin}>
+                                                Login</button>
                                             </li>}
                 </ul>
             </div>
