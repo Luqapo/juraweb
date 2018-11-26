@@ -9,14 +9,12 @@ https://mojajura.herokuapp.com
 Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną baze dróg.
 
 
-# Technologie użyte: React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB, Material UI.
+# Technologie użyte: 
+React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB, Material UI.
 
 ![Alt text](
      https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-18-51%20%5Bwww.imagesplitter.net%5D.jpeg
     )
-
-Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
->>>>>>> 749fdbecdc464f6c118f8b8000ee347501871a84
 
 # Instalacja: 
     - sklonować repozytorium,
@@ -39,4 +37,4 @@ Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
  
 
   ![alt text](https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-19-33%20%5Bwww.imagesplitter.net%5D.jpeg)
->>>>>>> 749fdbecdc464f6c118f8b8000ee347501871a84
+
