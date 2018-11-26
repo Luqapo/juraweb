@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { url } from '../../config/config';
 
 export const authStart = () => {
     return {
@@ -31,7 +32,7 @@ export const addUser = (login, password, password2, email) => {
     if (login.length > 5 && password.length > 5 && password === password2 && email.length > 5) {
         return dispatch => {
             dispatch(authStart());
-            fetch('https://mojajura.herokuapp.com/api/auth/register', {
+            fetch(`${url}/api/auth/register`, {
                 method : 'POST',
                 body : JSON.stringify({
                     login: login,
@@ -56,7 +57,7 @@ export const addUser = (login, password, password2, email) => {
 export const auth = (login, password) => {
     return dispatch => {
         dispatch( authStart());
-        fetch('https://mojajura.herokuapp.com/api/auth/login', {
+        fetch(`${url}/api/auth/login`, {
             method : 'POST',
             body : JSON.stringify({
                 login: login,
@@ -68,7 +69,6 @@ export const auth = (login, password) => {
         })
         .then( resp => resp.json())
         .then(function (response) {
-                console.log(response);
                 dispatch(authSucces(login, response.token));
             })
         .catch(function (error){

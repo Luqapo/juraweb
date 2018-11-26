@@ -1,0 +1,42 @@
+export const styles = theme => ({
+    root: {
+      width: '100%',
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+    },
+    secondaryHeading: {
+      fontSize: theme.typography.pxToRem(15),
+      color: theme.palette.text.secondary,
+    },
+    icon: {
+      verticalAlign: 'bottom',
+      height: 20,
+      width: 20,
+    },
+    details: {
+      width: "100%",
+    },
+    column: {
+      flexBasis: '33.33%',
+    },
+    columnDown: {
+      // flexBasis: '25%',
+    },
+    helper: {
+      borderLeft: `2px solid ${theme.palette.divider}`,
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    },
+    link: {
+      color: theme.palette.primary.main,
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
+    },
+  });
+  

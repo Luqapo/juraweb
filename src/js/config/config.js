@@ -1,0 +1,1 @@
+export const url = 'https://mojajura.herokuapp.com'

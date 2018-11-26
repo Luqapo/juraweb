@@ -105,17 +105,16 @@ router.route('/search')
 
 router.route('/ascents/add')
     .post((req,res) => {
-        req.body.data.forEach(ascent => {
             const newAscent = new Ascent({
                 user: req.body.user,
                 rejon: req.body.rejon,
-                skala: ascent.skala,
-                droga: ascent.droga,
-                wycena: ascent.wycena,
-                towjaOcena: Number(ascent.ocena),
-                styl: ascent.styl,
-                date: ascent.date,
-                comment: ascent.comment
+                skala: req.body.data.skala,
+                droga: req.body.data.droga,
+                wycena: req.body.data.wycena,
+                towjaOcena: Number(req.body.data.ocena),
+                styl: req.body.data.styl,
+                date: req.body.data.date,
+                comment: req.body.data.comment
                 });
 
             newAscent.save()
@@ -123,9 +122,9 @@ router.route('/ascents/add')
                     console.log('Ascents added');
                 })
                 .catch(err => console.log(err));
+                res.send({ message:'Ascent added' })
          });
-         res.send({ message:'Ascent added' })
-    });
+         
 
 app.listen(PORT,  "0.0.0.0", () => {
     console.log(`Server listen at port ${PORT}`);
