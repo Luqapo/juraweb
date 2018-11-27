@@ -1,1 +1,1 @@
-export const url = 'https://mojajura.herokuapp.com'
+export const url = 'http://localhost:5000'

@@ -2,6 +2,7 @@ export const styles = theme => ({
     root: {
         width: '100%',
         display: 'flex',
+        marginTop: '10px',
       },
       formControl: {
         margin: theme.spacing.unit,
@@ -25,4 +26,7 @@ export const styles = theme => ({
           display: 'none',
         },
       },
+    buttonCenter: {
+      margin: 'auto 20px',
+    }
   });

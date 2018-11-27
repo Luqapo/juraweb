@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 import { styles } from './AddRouteStyles';
 import { url } from '../../config/config';
@@ -74,7 +75,7 @@ class AddRoute extends React.Component{
     render(){
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
+            <Paper className={classes.root}>
                 <div>
                     <TextField 
                             onChange={this.handleName}
@@ -114,14 +115,14 @@ class AddRoute extends React.Component{
                         </Select>
                     </FormControl>
                 </div>
-                <div>
+                <div className={classes.buttonCenter}>
                     <Button onClick={this.handleSend}
                             variant="outlined"
                             color="primary">
                             Zapisz
                     </Button>
                 </div>
-            </div>
+            </Paper>
         )
     }
 }

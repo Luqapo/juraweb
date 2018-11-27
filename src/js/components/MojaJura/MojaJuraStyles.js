@@ -8,9 +8,10 @@ export const styles = theme => ({
       },
     },
     image: {
-        position: 'relative',
+      position: 'relative',
       height: '33.33%',
       width: '100%',
+      border: '2px solid white',
       backgroundSize: 'cover',
       [theme.breakpoints.up('sm')]: {
         width: '33.33%', // Overrides inline-style

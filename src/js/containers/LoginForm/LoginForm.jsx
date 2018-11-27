@@ -56,8 +56,18 @@ class LoginForm extends React.Component{
         const { classes } = this.props;
         const openModal = Boolean(!this.props.userIn);
         const addAcount = [
-            <Input key="input1" name="password2" onChange={this.handleChange} type="password" placeholder="Powtórz hasło"/>,
-            <Input key="input2" name="email" onChange={this.handleChange} type="email" placeholder="Email"/>
+            <Input key="input1" 
+                   name="password2" 
+                   onChange={this.handleChange} 
+                   type="password" 
+                   placeholder="Powtórz hasło"
+                   required/>,
+            <Input key="input2" 
+                   name="email" 
+                   onChange={this.handleChange} 
+                   type="email" 
+                   placeholder="Email"
+                   required/>
         ];
         return (
                     <Modal
@@ -70,11 +80,13 @@ class LoginForm extends React.Component{
                             <form onSubmit={this.submitHandler}>
                                     <Input name="login" 
                                            onChange={this.handleChange} 
-                                           placeholder="Login"/>
+                                           placeholder="Login"
+                                           required/>
                                     <Input name="password" 
                                            onChange={this.handleChange} 
                                            type="password" 
-                                           placeholder="Password"/>
+                                           placeholder="Password"
+                                           required/>
                                 {this.state.addUser ? addAcount : null}
                                 <div className={classes.buttonCenter}>
                                     <Button type="submit">Wyślij</Button>
