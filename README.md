@@ -2,21 +2,11 @@
 
 https://mojajura.herokuapp.com
 
-![Alt text](
-     https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-18-51%20%5Bwww.imagesplitter.net%5D.jpeg
-    )
-
 Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną baze dróg.
 
-<<<<<<< HEAD
-Technologie użyte: React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB.
-=======
-![Alt text](
-     https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-18-51%20%5Bwww.imagesplitter.net%5D.jpeg
-    )
 
-Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
->>>>>>> 749fdbecdc464f6c118f8b8000ee347501871a84
+# Technologie użyte: 
+React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB, Material UI.
 
 # Instalacja: 
     - sklonować repozytorium,
@@ -33,12 +23,5 @@ Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
 
 
 # ToDo:
-- dopasowanie aplikacji do pracy na różnych urządzeniach - RWD (prawdopodobie zastosowanie reactstrap),
 - ogólna porpawa wyglądu aplikacji (porawa czytelnośći list, dopracowanie menu),
 - błedy nie wyrzucać w konsoli tylko w okienku !
-<<<<<<< HEAD
-=======
- 
-
-  ![alt text](https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-19-33%20%5Bwww.imagesplitter.net%5D.jpeg)
->>>>>>> 749fdbecdc464f6c118f8b8000ee347501871a84
