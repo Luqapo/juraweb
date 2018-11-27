@@ -1,6 +1,4 @@
 import React from "react";
-import AddRoute from "../AddRoute/AddRoute.jsx";
-import RouteListExpansion from './RouteListExpanansion/RouteListExpansion.jsx';
 import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +11,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
 import { styles } from './RouteListStyles';
-import AddAscent from './AddAscent/AddAscent.jsx'
+import AddAscent from './AddAscent/AddAscent.jsx';
+import AddRoute from "../AddRoute/AddRoute.jsx";
+import RouteListExpansion from './RouteListExpanansion/RouteListExpansion.jsx';
 
 class RouteList extends React.Component{
     constructor(props) {
@@ -79,7 +79,7 @@ class RouteList extends React.Component{
                         ))}
                 </div>
                 {this.state.addShow ? <AddRoute skala={this.props.history.location.state.skala}/> : null}
-                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <div style={{display: 'flex', justifyContent: 'flex-end', margin: '15px'}}>
                     <Button onClick={this.handleAdd}
                         variant="outlined"
                         color="primary"

@@ -13,6 +13,7 @@ class EastJura extends React.Component{
 
         this.state = {
             data: '',
+            background: 'url("../img/dupa_slonia.jpg")',
         }
     }
 
@@ -35,6 +36,7 @@ class EastJura extends React.Component{
             fetch(`${url}/api/rejony/${rejonName}`)
             .then( resp => resp.json())
             .then( resp => {
+                resp.background = this.state.background;
                 this.props.history.push('/crags', resp);
             })   
     }
@@ -52,7 +54,7 @@ class EastJura extends React.Component{
                         </div>)
                     );
             return (
-                <div style={{background: 'url("../img/dupa_slonia.jpg")', 
+                <div style={{background: this.state.background, 
                              backgroundSize: 'cover'}}
                              className={classes.myJura}>
                             {listElements}

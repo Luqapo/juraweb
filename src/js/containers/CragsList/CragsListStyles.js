@@ -1,7 +1,5 @@
 export const styles = theme => ({
     myJura: {
-    background: 'url("../img/background.JPG")',
-    backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     width: '100%',
     minHeight: '93vh',

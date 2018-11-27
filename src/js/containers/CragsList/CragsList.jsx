@@ -7,17 +7,7 @@ import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
 
 class CragsList extends Component{
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            routesList: '',
-            listToSend: '',
-            skala: '',
-            rejon: ''
-        }
-    }
-
+    
     handleList = (e) => {
         let skalaName = e.currentTarget.dataset.skala;
         let newArr = [...this.props.history.location.state];
@@ -47,7 +37,9 @@ class CragsList extends Component{
                             </div>)
                             )
             return (
-                    <div className={classes.myJura}>
+                    <div style={{background: this.props.history.location.state.background,
+                                 backgroundSize: 'cover'}}
+                         className={classes.myJura}>
                             <ul>
                             {newList}
                             </ul>
