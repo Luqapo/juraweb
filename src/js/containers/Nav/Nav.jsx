@@ -127,9 +127,9 @@ class Nav extends React.Component{
               <MenuItem onClick={this.handleProfileMenuOpen}
                         onClick={this.handleMobileMenuClose}>>
                     <div className={classes.upBarItem}>    
-                    { this.state.schowLog ?  <Button color="inherit" size="large"
+                    { this.props.userIn ?  <Button color="inherit" size="large"
                                                     onClick={this.handleLogOff}>
-                                                    Logoff
+                                                    Log out
                                              </Button>
                                           : 
                                              <Button color="inherit" 
@@ -183,9 +183,9 @@ class Nav extends React.Component{
                                     </Button>
                                 </div>
                                 <div className={classes.upBarItem}>    
-                                    { this.state.schowLog ?     <Button color="inherit" size="large"
+                                    { this.props.userIn ?     <Button color="inherit" size="large"
                                                                     onClick={this.handleLogOff}>
-                                                                    Logoff
+                                                                    Log out
                                                                 </Button>
                                                                 : 
                                                                 <Button color="inherit" size="large"
