@@ -1,5 +1,6 @@
 export const styles = theme => ({
     myJura: {
+    position: 'relative',
     width: '100%',
     height: '93vh',
     marginTop: '48px',
@@ -17,5 +18,5 @@ export const styles = theme => ({
         display: 'flex',
         justifyContent: 'center',
         margin: '10px 0',
-    }
+    },
   });

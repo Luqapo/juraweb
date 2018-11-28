@@ -3,9 +3,9 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import { styles } from './CenterJuraStyles';
-
 import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
+import BackButton from '../../components/BackButton/BackButton.jsx';
 
 class CenterJura extends React.Component{
     constructor(props) {
@@ -30,7 +30,7 @@ class CenterJura extends React.Component{
             });
     }
 
-    handleSchow = (e)=> {
+    handleSchow = (e) => {
         let rejonName = e.currentTarget.dataset.rejon;
 
             fetch(`${url}/api/rejony/${rejonName}`)
@@ -39,6 +39,10 @@ class CenterJura extends React.Component{
                 resp.background = this.state.background;
                 this.props.history.push('/crags', resp);
             })   
+    }
+
+    handleBack = () => {
+        this.props.history.goBack();
     }
 
     render(){
@@ -56,7 +60,8 @@ class CenterJura extends React.Component{
                 <div style={{background: this.state.background, 
                                 backgroundSize: 'cover'}} 
                                 className={classes.myJura}>
-                                {listElements}
+                        {listElements}
+                    <BackButton handleBack={this.handleBack}/>
                 </div>
             )
     }

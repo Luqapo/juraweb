@@ -6,6 +6,7 @@ import { styles } from './EastJuraStyles';
 
 import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
+import BackButton from '../../components/BackButton/BackButton.jsx';
 
 class EastJura extends React.Component{
     constructor(props) {
@@ -41,6 +42,10 @@ class EastJura extends React.Component{
             })   
     }
 
+    handleBack = () => {
+        this.props.history.goBack();
+    }
+
     render(){
         const { classes } = this.props;
         const data = [...this.state.data];
@@ -57,7 +62,8 @@ class EastJura extends React.Component{
                 <div style={{background: this.state.background, 
                              backgroundSize: 'cover'}}
                              className={classes.myJura}>
-                            {listElements}
+                    {listElements}
+                    <BackButton handleBack={this.handleBack}/>
                 </div>
             )
     }

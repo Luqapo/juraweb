@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { styles } from './CragsListStyles';
 import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
+import BackButton from '../../components/BackButton/BackButton.jsx';
 
 class CragsList extends Component{
     
@@ -24,6 +25,10 @@ class CragsList extends Component{
         
     }
 
+    handleBack = () => {
+        this.props.history.goBack();
+    }
+
     render(){
         const { classes } = this.props;
         let newArr = [...this.props.history.location.state];
@@ -40,9 +45,8 @@ class CragsList extends Component{
                     <div style={{background: this.props.history.location.state.background,
                                  backgroundSize: 'cover'}}
                          className={classes.myJura}>
-                            <ul>
                             {newList}
-                            </ul>
+                        <BackButton handleBack={this.handleBack}/>
                     </div>
         )
     }
