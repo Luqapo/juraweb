@@ -10,12 +10,12 @@ function BackButton(props) {
     const { classes } = props;
     return (
         <div className={classes.backPosition}>
-                        <IconButton 
-                                    aria-label="Back"
-                                    onClick={props.handleBack}>
-                            <ArrowBackIos fontSize="large"/>
-                        </IconButton>
-                    </div>
+            <IconButton 
+                    aria-label="Back"
+                    onClick={props.handleBack}>
+                <ArrowBackIos fontSize="large"/>
+            </IconButton>
+        </div>
     )
 }
 

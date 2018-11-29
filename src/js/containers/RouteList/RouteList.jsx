@@ -14,6 +14,7 @@ import { styles } from './RouteListStyles';
 import AddAscent from './AddAscent/AddAscent.jsx';
 import AddRoute from "../AddRoute/AddRoute.jsx";
 import RouteListExpansion from './RouteListExpanansion/RouteListExpansion.jsx';
+import BackButton from '../../components/BackButton/BackButton.jsx'
 
 class RouteList extends React.Component{
     constructor(props) {
@@ -28,6 +29,10 @@ class RouteList extends React.Component{
         this.setState({
             addShow: this.state.addShow === false ? true : false
         })
+    }
+
+    handleBack = () => {
+        this.props.history.goBack();
     }
 
     render(){
@@ -79,6 +84,7 @@ class RouteList extends React.Component{
                         ))}
                 </div>
                 {this.state.addShow ? <AddRoute skala={this.props.history.location.state.skala}/> : null}
+                <BackButton handleBack={this.handleBack}/>
                 <div style={{display: 'flex', justifyContent: 'flex-end', margin: '15px'}}>
                     <Button onClick={this.handleAdd}
                         variant="outlined"

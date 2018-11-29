@@ -28,7 +28,7 @@ import RouteList from "./containers/RouteList/RouteList.jsx";
                             <Route path="/north" component={NorthJura} />
                             <Route path="/crags" component={CragsList} />
                             <Route path="/routes" component={RouteList} />
-                            <Route path="/" exact component={MojaJura} />
+                            <Route path="/" component={MojaJura} />
                         </Switch>
                     </div>
                 </MuiThemeProvider>
