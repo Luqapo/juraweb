@@ -210,10 +210,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*****************************!*\
   !*** ./js/config/config.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: url */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("//export const url = 'http://localhost:5000';\n//export const url = 'https://mojajura.herokuapp.com';\n\n//# sourceURL=webpack:///./js/config/config.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"url\", function() { return url; });\n//export const url = 'http://localhost:5000';\nconst url = 'https://mojajura.herokuapp.com';\n\n//# sourceURL=webpack:///./js/config/config.js?");
 
 /***/ }),
 
