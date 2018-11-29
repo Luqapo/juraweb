@@ -18,6 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const router = express.Router();
 app.use((req,res,next) => {
+    console.log(req.url);
     const url = req.url;
     if(url === '/east' || url === '/center' || url === '/north'){
         res.sendFile(path.join(__dirname+'/public/index.html'));
