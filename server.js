@@ -21,7 +21,7 @@ app.use((req,res,next) => {
     console.log(req.url);
     const url = req.url;
     if(url === '/east' || url === '/center' || url === '/north'){
-        res.sendFile(path.join(__dirname, '/public/index.html'));
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
     }
     next();
 });
