@@ -5,20 +5,22 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "LuqApo",
   "license": "MIT",
   "dependencies": {
-    "@material-ui/icons": "^3.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.6",
-    "react-router-dom": "^4.3.1"
+    "mongoose": "^5.3.6"
   },
   "engines": {
     "node": "8.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }

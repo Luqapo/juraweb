@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require ('bcryptjs');
 
@@ -7,8 +6,6 @@ const config = require('../config');
 const User = require('../models/User');
 
 const router = express.Router();
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(bodyParser.json());
 
 router.post('/register', (req,res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
