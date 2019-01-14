@@ -10,10 +10,10 @@ React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB, Material UI.
 
 # Instalacja: 
     - sklonować repozytorium,
-    - zainstalować Json-server,
     - uruchomić npm i(w repozytorium jest plik package.json który zawiera potrzebne zależności),
-    - uruchomić Json-server w katalogu DB z ustalonym portem komendą -  'json-server --watch --port 3010 jura.json',
-    - uruchomić Webpack w głownym katalogu projektu komendą -  'npm run build',
+    - uruchomić server komendą 'node server.js',
+    - uruchomić npm i w katalogu src(w repozytorium jest plik package.json który zawiera potrzebne zależności),
+    - uruchomić Webpack w katalogu src projektu komendą -  'npm run build',
     
 # Funcjonalności:
   - aplikacja generuje wszystki listy na podstawie bazy danych,
