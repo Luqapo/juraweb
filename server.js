@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const AuthController = require('./auth/AuthController');
-const CragsController = require('./crags/CragsController');
+const authRoutes = require('./routes/auth');
+const cragsRoutes = require('./routes/crags');
+const ascentRoutes = require('./routes/ascents');
 
 const uri = 'mongodb://Luq:Haslo1@cluster0-shard-00-00-gw1sh.mongodb.net:27017,cluster0-shard-00-01-gw1sh.mongodb.net:27017,cluster0-shard-00-02-gw1sh.mongodb.net:27017/JuraDB?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
 const PORT = process.env.PORT || 5000;
@@ -33,8 +34,9 @@ app.use((req,res,next) => {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api/auth', AuthController);
-app.use('/api', CragsController);
+app.use('/api/auth', authRoutes);
+app.use('/api', cragsRoutes);
+app.use('/api/ascents', ascentRoutes);
 
 app.listen(PORT,  "0.0.0.0", () => {
     console.log(`Server listen at port ${PORT}`);
