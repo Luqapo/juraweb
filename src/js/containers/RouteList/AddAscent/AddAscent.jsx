@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -45,13 +46,14 @@ class AddAscent extends Component {
                 }),
                 headers: {
                     'Content-Type': 'application/json',
+                    'x-acces-token': this.props.token
                 },
             })
             .then( resp => resp.json())
-            .then(function (response) {
+            .then(response => {
                     console.log(response);
                 })
-            .catch(function (error) {
+            .catch(error => {
                     console.log(error);
                 })
 
@@ -131,4 +133,10 @@ class AddAscent extends Component {
     }
 }
 
-export default withStyles(styles)(AddAscent);
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(AddAscent));

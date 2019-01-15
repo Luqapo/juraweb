@@ -12,7 +12,7 @@ exports.registerUser = async (req,res) => {
         password: hashedPassword,
         email: req.body.email
     });
-    const token = jwt.sign({ id: user._id }, config.secret, {
+    const token = jwt.sign({ userId: user._id }, config.secret, {
         expiresIn: 86400
     });
     res.status(200).send({ auth: true, token: token });
@@ -46,7 +46,7 @@ exports.loginUser = async (req,res) => {
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
         if(!passwordIsValid) return res.status(401).send({ auth: false, token: null });
 
-        const token = jwt.sign({ id: user._id }, config.secret, {
+        const token = jwt.sign({ userId: user._id }, config.secret, {
             expiresIn: 86400
         });
 

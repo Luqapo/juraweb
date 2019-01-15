@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -48,7 +49,6 @@ class AddRoute extends React.Component{
             przejscia: 0,
             ocena: 0
         };
-        console.log(obj);
 
         fetch(`${url}/api/droga/add`, {
                 method : 'POST',
@@ -61,13 +61,14 @@ class AddRoute extends React.Component{
                 }),
                 headers: {
                     'Content-Type': 'application/json',
+                    'x-acces-token': this.props.token
                 },
             })
             .then( resp => resp.json())
-            .then(function (response) {
+            .then(response => {
                     console.log(response);
                 })
-            .catch(function (error) {
+            .catch(error => {
                     console.log(error);
                 })
     }
@@ -127,4 +128,10 @@ class AddRoute extends React.Component{
     }
 }
 
-export default withStyles(styles)(AddRoute);
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(AddRoute));

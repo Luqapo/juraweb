@@ -14,7 +14,7 @@ exports.getAscents = async (req, res, next) => {
 
 exports.postAscent = async (req, res, next) => {
     try {
-        const ascent = await Ascent.create({
+        await Ascent.create({
                 user: req.body.user,
                 rejon: req.body.rejon,
                 skala: req.body.data.skala,
