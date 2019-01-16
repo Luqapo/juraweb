@@ -21,9 +21,9 @@ exports.registerUser = async (req, res, next) => {
         email: req.body.email
     });
     const token = jwt.sign({ userId: user._id }, config.secret, {
-        expiresIn: 86400
+        expiresIn: '1h'
     });
-    res.status(200).send({ auth: true, token: token });
+    res.status(200).send({ auth: true, token: token, login: user.login });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -46,9 +46,9 @@ exports.loginUser = async (req, res, next) => {
         error.statusCode = 401;
         throw error;
     }
-    const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: 86400 });
+    const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '1h' });
 
-    res.status(200).send({ auth: true, token: token });
+    res.status(200).send({ auth: true, token: token, login: user.login });
 
     } catch (err) {
         if (!err.statusCode) {

@@ -41,9 +41,9 @@ app.use((error, req, res, next) => {
     res.status(status).json({ message : message, data: data });
 });
 
-mongoose.connect(uri, {useNewUrlParser: true})
-    .then(  () => {
-        app.listen(PORT,  "0.0.0.0", () => {
+mongoose.connect(uri, { useNewUrlParser: true })
+    .then( () => {
+        app.listen(PORT, () => {
             console.log(`Server listen at port ${PORT}`);
         })
     })

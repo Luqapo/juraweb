@@ -15,14 +15,17 @@ export const authSucces = (login, token) => {
     };
 };
 
-export const authFail = (error) => {
+export const catchError = (error) => {
     return {
-        type: actionTypes.AUTH_FAIL,
+        type: actionTypes.ERROR,
         error: error
     };
 };
 
 export const logOff = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiryDate');
+    localStorage.removeItem('login');
     return {
         type: actionTypes.LOG_OFF
     };
@@ -44,11 +47,18 @@ export const addUser = (login, password, password2, email) => {
                 },
             })
             .then( resp => resp.json())
-            .then(function (response) {
+            .then(response => {
                     dispatch(authSucces(login, response.token));
-                })
-            .catch(function (error) {
-                    console.log(error);
+                    localStorage.setItem('token', response.token);
+                    localStorage.setItem('login', response.login);
+                    const remainingMilliseconds = 60 * 60 * 1000;
+                    const expiryDate = new Date(
+                        new Date().getTime() + remainingMilliseconds
+                    );
+                    localStorage.setItem('expiryDate', expiryDate.toISOString());
+                    })
+            .catch(error => {
+                    dispatch(catchError(error));
                 })
         }
     };
@@ -68,12 +78,18 @@ export const auth = (login, password) => {
             },
         })
         .then( resp => resp.json())
-        .then(function (response) {
+        .then(response => {
                 dispatch(authSucces(login, response.token));
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('login', response.login);
+                const remainingMilliseconds = 60 * 60 * 1000;
+                const expiryDate = new Date(
+                    new Date().getTime() + remainingMilliseconds
+                );
+                localStorage.setItem('expiryDate', expiryDate.toISOString());
             })
-        .catch(function (error){
-                console.log(error);
-                dispatch(authFail(error));
+        .catch(error => {
+                dispatch(catchError(error));
             })
     };
 };
