@@ -26,3 +26,4 @@ React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB, Material UI.
 - ogólna porpawa wyglądu aplikacji (modale),
 - validacja we frontendzie
 - przemodelowanie bazy danych?
+- użycie process.env
