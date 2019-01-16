@@ -1,14 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { withStyles } from '@material-ui/core/styles';
-
 import { styles } from './EastJuraStyles';
 
 import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
 import BackButton from '../../components/BackButton/BackButton.jsx';
+import * as actions from '../../store/actions/auth.jsx';
 
-class EastJura extends React.Component{
+class EastJura extends Component{
     constructor(props) {
         super(props);
 
@@ -20,26 +21,35 @@ class EastJura extends React.Component{
 
     componentDidMount() {
         fetch(`${url}/api/regiony/east`)
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch crags!');
+                }
+                return res.json();
+            })
             .then( resp => {
                 this.setState({
                     data: resp
                 })
             })
-            .catch( err => {
-                console.log('Błąd!', err);
-            });
+            .catch(err => this.props.catchError(err));
     }
 
     handleSchow = (e)=> {
             let rejonName = e.currentTarget.dataset.rejon;
 
             fetch(`${url}/api/rejony/${rejonName}`)
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch crags!');
+                }
+                return res.json();
+            })
             .then( resp => {
                 resp.background = this.state.background;
                 this.props.history.push('/crags', resp);
-            })   
+            })
+            .catch(err => this.props.catchError(err));  
     }
 
     handleBack = () => {
@@ -69,4 +79,10 @@ class EastJura extends React.Component{
     }
 }
 
-export default withStyles(styles)(EastJura);
+const mapDispatchToProps = dispatch => {
+    return {
+        catchError: (err) => dispatch( actions.catchError(err) )
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(EastJura));

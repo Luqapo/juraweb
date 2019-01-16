@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -16,7 +16,7 @@ import AddRoute from "../AddRoute/AddRoute.jsx";
 import RouteListExpansion from './RouteListExpanansion/RouteListExpansion.jsx';
 import BackButton from '../../components/BackButton/BackButton.jsx'
 
-class RouteList extends React.Component{
+class RouteList extends Component{
     constructor(props) {
         super(props);
 

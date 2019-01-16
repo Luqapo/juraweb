@@ -1,11 +1,12 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { withStyles } from '@material-ui/core/styles';
-
 import { styles } from './CragsListStyles';
 import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
 import BackButton from '../../components/BackButton/BackButton.jsx';
+import * as actions from '../../store/actions/auth.jsx';
 
 class CragsList extends Component{
     
@@ -15,14 +16,18 @@ class CragsList extends Component{
         let rejon = newArr[0].rejon
 
         fetch(`${url}/api/skaly/${skalaName}`)
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch crags!');
+                }
+                return res.json();
+            })
             .then( resp => {
                     resp.rejon = rejon;
                     resp.skala = skalaName;
                     this.props.history.push('/routes', resp);
             })   
-
-        
+            .catch(err => this.props.catchError(err));
     }
 
     handleBack = () => {
@@ -52,4 +57,10 @@ class CragsList extends Component{
     }
 }
 
-export default withStyles(styles)(CragsList);
+const mapDispatchToProps = dispatch => {
+    return {
+        catchError: (err) => dispatch( actions.catchError(err) )
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(CragsList));

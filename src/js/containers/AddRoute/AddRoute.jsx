@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 import { styles } from './AddRouteStyles';
 import { url } from '../../config/config';
+import * as actions from '../../store/actions/auth.jsx';
 
 
 class AddRoute extends React.Component{
@@ -64,12 +65,22 @@ class AddRoute extends React.Component{
                     'x-acces-token': this.props.token
                 },
             })
-            .then( resp => resp.json())
+            .then(res => {
+                console.log(res);
+                if (res.status === 422) {
+                  throw new Error('Validation failed.');
+                }
+                if (res.status !== 200 && res.status !== 201) {
+                  throw new Error('Could not add route!');
+                }
+                return res.json();
+              })
             .then(response => {
                     console.log(response);
                 })
             .catch(error => {
-                    console.log(error);
+                console.log(error);
+                    this.props.catchError(error);
                 })
     }
 
@@ -134,4 +145,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(AddRoute));
+const mapDispatchToProps = dispatch => {
+    return {
+        catchError: (err) => dispatch( actions.catchError(err) )
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AddRoute));

@@ -10,7 +10,8 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 
 import { styles } from './AddAscentStyles';
-import { url } from '../../../config/config'
+import { url } from '../../../config/config';
+import * as actions from '../../../store/actions/auth.jsx';
 
 class AddAscent extends Component {
     state = {
@@ -49,13 +50,16 @@ class AddAscent extends Component {
                     'x-acces-token': this.props.token
                 },
             })
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to add ascent!');
+                }
+                return res.json();
+            })
             .then(response => {
                     console.log(response);
                 })
-            .catch(error => {
-                    console.log(error);
-                })
+            .catch(err => this.props.catchError(err));
 
     };
 
@@ -139,4 +143,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(AddAscent));
+const mapDispatchToProps = dispatch => {
+    return {
+        catchError: (err) => dispatch( actions.catchError(err) )
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AddAscent));

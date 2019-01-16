@@ -75,13 +75,16 @@ class Nav extends React.Component{
                     'Content-Type': 'application/json',
                 },
             })
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch search results!');
+                }
+                return res.json();
+            })
             .then( response => {
                     this.props.history.push('/search', response);
                 })
-            .catch( error => {
-                    console.log(error);
-                })
+            .catch(err => this.props.catchError(err));
             this.handleMobileMenuClose();
     }
 
@@ -178,9 +181,9 @@ class Nav extends React.Component{
                                     </div>
                                 </div>
                                 <div className={classes.upBarItem}>
-                                    <Button component={MyList} color="inherit">
+                                    {this.props.userIn ? <Button component={MyList} color="inherit">
                                         Moje przejścia
-                                    </Button>
+                                    </Button> : null }
                                 </div>
                                 <div className={classes.upBarItem}>    
                                     { this.props.userIn ?     <Button color="inherit" size="large"
@@ -210,7 +213,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logOff: () => dispatch ( actions.logOff())
+        logOff: () => dispatch( actions.logOff()),
+        catchError: (err) => dispatch( actions.catchError(err) )
     }
 };
 

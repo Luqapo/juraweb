@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import ResponsiveTable from 'material-ui-next-responsive-table'
 
@@ -7,8 +7,9 @@ import Paper from '@material-ui/core/Paper';
 
 import { styles } from './MyListStyles';
 import { url } from '../../config/config';
+import * as actions from '../../store/actions/auth.jsx';
 
-class MyList extends React.Component{
+class MyList extends Component{
     constructor(props) {
         super(props);
 
@@ -19,16 +20,18 @@ class MyList extends React.Component{
 
     componentDidMount() {
         fetch(`${url}/api/ascents/${this.props.userIn}`)
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch ascents!');
+                }
+                return res.json();
+            })
             .then( resp => {
                 this.setState({
                     list: resp
                 })
-
             })
-            .catch( err => {
-                console.log('Błąd!', err);
-            });
+            .catch(err => this.props.catchError(err));
     }
 
     render(){
@@ -106,4 +109,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(MyList));
+const mapDispatchToProps = dispatch => {
+    return {
+        catchError: (err) => dispatch( actions.catchError(err) )
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MyList));

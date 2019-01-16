@@ -1,13 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { withStyles } from '@material-ui/core/styles';
-
 import { styles } from './CenterJuraStyles';
+
 import { url } from '../../config/config';
 import MyButton from '../../components/MyButton/MyButton.jsx';
 import BackButton from '../../components/BackButton/BackButton.jsx';
+import * as actions from '../../store/actions/auth.jsx';
 
-class CenterJura extends React.Component{
+class CenterJura extends Component{
     constructor(props) {
         super(props);
 
@@ -19,14 +21,19 @@ class CenterJura extends React.Component{
 
     componentDidMount() {
         fetch(`${url}/api/regiony/center`)
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch crags!');
+                }
+                return res.json();
+            })
             .then( resp => {
                 this.setState({
                     data: resp
                 })
             })
             .catch( err => {
-                console.log('Błąd!', err);
+                this.props.catchError(err);
             });
     }
 
@@ -34,11 +41,17 @@ class CenterJura extends React.Component{
         let rejonName = e.currentTarget.dataset.rejon;
 
             fetch(`${url}/api/rejony/${rejonName}`)
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed to fetch crags!');
+                }
+                return res.json();
+            })
             .then( resp => {
                 resp.background = this.state.background;
                 this.props.history.push('/crags', resp);
-            })   
+            })
+            .catch(err => this.props.catchError(err));  
     }
 
     handleBack = () => {
@@ -67,4 +80,10 @@ class CenterJura extends React.Component{
     }
 }
 
-export default withStyles(styles)(CenterJura);
+const mapDispatchToProps = dispatch => {
+    return {
+        catchError: (err) => dispatch( actions.catchError(err) )
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(CenterJura));

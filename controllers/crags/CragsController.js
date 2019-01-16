@@ -56,7 +56,7 @@ exports.addRoute = async (req, res, next) => {
             przejscia: req.body.przejscia,
             ocena: req.body.ocena
         });
-    res.status(200).send({ message:'Route added', droga});
+    res.status(200).send({ message:'Route added' });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
