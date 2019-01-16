@@ -29,6 +29,12 @@ const reducer = (state = initialSate,action) => {
                 ...state,
                 error: action.error
             };
+
+        case actionTypes.DISMISS_ERROR:
+            return {
+                ...state,
+                error: null
+            };
     }
     return state;
 };

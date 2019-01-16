@@ -22,6 +22,12 @@ export const catchError = (error) => {
     };
 };
 
+export const dismissError = () => {
+    return {
+        type: actionTypes.DISMISS_ERROR
+    };
+};
+
 export const logOff = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expiryDate');
@@ -46,7 +52,18 @@ export const addUser = (login, password, password2, email) => {
                     'Content-Type': 'application/json',
                 },
             })
-            .then( resp => resp.json())
+            .then(res => {
+                if (res.status === 401) {
+                  throw new Error('Wrong password.');
+                }
+                if (res.status === 404) {
+                    throw new Error('Wrong login.');
+                  }
+                if (res.status !== 200 && res.status !== 201) {
+                  throw new Error('Could not authenticate you!');
+                }
+                return res.json();
+              })
             .then(response => {
                     dispatch(authSucces(login, response.token));
                     localStorage.setItem('token', response.token);
@@ -77,7 +94,18 @@ export const auth = (login, password) => {
                 'Content-Type': 'application/json',
             },
         })
-        .then( resp => resp.json())
+        .then(res => {
+            if (res.status === 401) {
+              throw new Error('Wrong password.');
+            }
+            if (res.status === 404) {
+                throw new Error('Wrong login.');
+              }
+            if (res.status !== 200 && res.status !== 201) {
+              throw new Error('Could not authenticate you!');
+            }
+            return res.json();
+          })
         .then(response => {
                 dispatch(authSucces(login, response.token));
                 localStorage.setItem('token', response.token);

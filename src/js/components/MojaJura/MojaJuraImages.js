@@ -12,6 +12,6 @@ export const images = [
     {
       url: "../img/Rzędkowice.jpg",
       title: 'Jura północna',
-      to: 'north'
+      to: '/north'
     },
   ];

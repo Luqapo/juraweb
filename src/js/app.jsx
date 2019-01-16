@@ -13,6 +13,7 @@ import CenterJura from './containers/CenterJura/CenterJura.jsx';
 import NorthJura from './containers/NorthJura/NorthJura.jsx';
 import CragsList from './containers/CragsList/CragsList.jsx';
 import RouteList from "./containers/RouteList/RouteList.jsx";
+import ErrorModal from './containers/ErrroModal/ErrorModal.jsx';
 
 import * as actions from './store/actions/auth.jsx';
 
@@ -54,6 +55,7 @@ class App extends React.Component {
                         <Route path="/routes" component={RouteList} />
                         <Route path="/" component={MojaJura} />
                     </Switch>
+                    {<ErrorModal />}
                 </div>
             </MuiThemeProvider>
         );
