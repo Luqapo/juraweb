@@ -8,7 +8,7 @@ exports.getAscents = async (req, res, next) => {
         if(!err.statusCode) {
             err.statusCode = 500;
         }
-        next(err)
+        next(err);
     }
 };
 
@@ -27,6 +27,9 @@ exports.postAscent = async (req, res, next) => {
                 });
         res.send({ message:'Ascent added' });
     } catch (err) {
-        if(err) return res.status(500).send('There was problem creating ascent.');
+        if(!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };

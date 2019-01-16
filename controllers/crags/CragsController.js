@@ -1,36 +1,54 @@
+const { validationResult } = require('express-validator/check');
+
 const Rejon = require('../../models/Rejon');
 const Skala = require('../../models/Skala');
 const Droga = require('../../models/Droga');
 
-exports.getRejony = async (req,res) => {
+exports.getRejony = async (req, res, next) => {
     try {
     const rejony = await Rejon.find({region: req.params.region_id})
     res.json(rejony);
     } catch (err) {
-        res.status(500).send('There was problem fetching rejony.');
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 }
 
-exports.getSkaly = async (req,res) => {
+exports.getSkaly = async (req, res, next) => {
     try {
     const skaly = await Skala.find({rejon: req.params.rejon_id})
     res.json(skaly);
     } catch (err) {
-        res.status(500).send('There was problem fetching skaly.');
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 }
 
-exports.getRoutes = async (req,res) => {
+exports.getRoutes = async (req, res, next) => {
     try {
     const routes = await Droga.find({skala: req.params.skala_id});        
     res.json(routes);
     } catch (err) {
-        res.status(500).send('There was problem fetching routes.');
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 }
 
-exports.addRoute = async (req,res) => {
+exports.addRoute = async (req, res, next) => {
     try {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        const error = new Error('Validation failed');
+        error.statusCode = 422;
+        error.data = errors.array();
+        throw error;
+    }
     const droga = await Droga.create({
             skala: req.body.skala,
             droga: req.body.droga,
@@ -40,11 +58,14 @@ exports.addRoute = async (req,res) => {
         });
     res.status(200).send({ message:'Route added', droga});
     } catch (err) {
-        res.status(500).send('There was problem registering the droga.');
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 }
 
-exports.searchRoute = async (req,res) => {
+exports.searchRoute = async (req, res, next) => {
     try {
     const result = await Droga.find({ droga: req.body.search });
     if(result.length === 0){
@@ -60,6 +81,9 @@ exports.searchRoute = async (req,res) => {
         'droga': result[0].droga
     });
     } catch (err) {
-        res.status(500).send('There was problem on the server.')
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }  
 }
