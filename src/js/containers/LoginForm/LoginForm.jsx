@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import * as actions from '../../store/actions/auth.jsx';
 import { styles } from './LoginFormStyles';
 
-class LoginForm extends React.Component{
+class LoginForm extends Component{
     constructor(props) {
         super(props);
 
@@ -32,7 +32,7 @@ class LoginForm extends React.Component{
         
         this.setState({
             [name]: value
-        }, () => console.log(this.validateInput(name)));
+        });
     }
 
     validateInput = (name) => {
@@ -71,12 +71,16 @@ class LoginForm extends React.Component{
     submitHandler = (event) => {
         event.preventDefault();
         if (!this.state.addUser){
-        this.props.onAuth(this.state.login, this.state.password);
+            if(this.validateInput('login') && this.validateInput('password')){
+                this.props.onAuth(this.state.login, this.state.password);
+            }
         } else {
-            this.props.addUser(this.state.login, this.state.password, this.state.password2, this.state.email);
-            this.setState({
-                addUser: false
-            });
+            if(this.validateInput('login') && this.validateInput('password2') && this.validateInput('email')){
+                this.props.addUser(this.state.login, this.state.password, this.state.password2, this.state.email);
+                this.setState({
+                    addUser: false
+                });
+            }
         }
     }
 
@@ -85,18 +89,26 @@ class LoginForm extends React.Component{
         const { classes } = this.props;
         const openModal = Boolean(!this.props.userIn);
         const addAcount = [
-            <Input key="input1" 
-                   name="password2" 
-                   onChange={this.handleChange} 
-                   type="password" 
-                   placeholder="Powtórz hasło"
-                   required/>,
-            <Input key="input2" 
-                   name="email" 
-                   onChange={this.handleChange} 
-                   type="email" 
-                   placeholder="Email"
-                   required/>
+            <FormControl required error={!this.validateInput('password2')} key="input1">
+                <Input  
+                    name="password2" 
+                    onChange={this.handleChange} 
+                    type="password" 
+                    placeholder="Powtórz hasło"
+                    required/>
+                {!this.validateInput('password2') && <FormHelperText>
+                                        Password dont match</FormHelperText>}
+            </FormControl>,
+            <FormControl required error={!this.validateInput('email')} key="input2">
+                <Input  
+                    name="email" 
+                    onChange={this.handleChange} 
+                    type="email" 
+                    placeholder="Email"
+                    required/>
+                {!this.validateInput('email') && <FormHelperText>
+                                        Invalid email</FormHelperText>}
+            </FormControl>
         ];
         return (
                     <Modal
@@ -112,7 +124,8 @@ class LoginForm extends React.Component{
                                             onChange={this.handleChange} 
                                             placeholder="Login"
                                             required/>
-                                    {!this.validateInput('login') && <FormHelperText>Min 5 characterds</FormHelperText>}
+                                    {!this.validateInput('login') && <FormHelperText>
+                                        Min 5 characterds</FormHelperText>}
                                 </FormControl>
                                 <FormControl required error={!this.validateInput('password')}>
                                     <Input name="password" 
@@ -120,7 +133,8 @@ class LoginForm extends React.Component{
                                            type="password" 
                                            placeholder="Password"
                                            required/>
-                                    {!this.validateInput('password') && <FormHelperText>Min 5 characterds</FormHelperText>}
+                                    {!this.validateInput('password') && <FormHelperText>
+                                        Min 5 characterds</FormHelperText>}
                                 </FormControl>
                                 {this.state.addUser ? addAcount : null}
                                 <div className={classes.buttonCenter}>
