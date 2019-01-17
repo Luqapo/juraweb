@@ -23,5 +23,7 @@ React, Redux, HTML5, CSS3, Webpack, NODE.js, Express.js, mongoDB, Material UI.
 
 
 # ToDo:
-- ogólna porpawa wyglądu aplikacji (porawa czytelnośći list, dopracowanie menu),
-- błedy nie wyrzucać w konsoli tylko w okienku !
+- ogólna porpawa wyglądu aplikacji (modale),
+- validacja we frontendzie
+- przemodelowanie bazy danych?
+- użycie process.env
