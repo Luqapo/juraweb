@@ -159,11 +159,10 @@ class Nav extends React.Component{
                                     Moja Jura
                                 </Button>
                             </div>
-                            { this.state.schowLog ? <LoginForm 
+                            { this.state.schowLog && <LoginForm 
                                                         handleLogOff={this.handleLogOff} 
                                                         show={this.state.schowLog} 
-                                                        showHandle={this.handleLogin}/>
-                                                         : null}
+                                                        showHandle={this.handleLogin}/> }
                             <div className={classes.sectionDesktop}>
                                 <div className={classes.upBarItem}>
                                     <div className={classes.search}>
@@ -181,9 +180,9 @@ class Nav extends React.Component{
                                     </div>
                                 </div>
                                 <div className={classes.upBarItem}>
-                                    {this.props.userIn ? <Button component={MyList} color="inherit">
+                                    {this.props.userIn && <Button component={MyList} color="inherit">
                                         Moje przejścia
-                                    </Button> : null }
+                                    </Button> }
                                 </div>
                                 <div className={classes.upBarItem}>    
                                     { this.props.userIn ?     <Button color="inherit" size="large"

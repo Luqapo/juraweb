@@ -24,11 +24,16 @@ router.post('/register',[
     body('login')
       .trim()
       .not()
-      .isEmpty()
+      .isLength({ min: 5 })
+      .custom((value, { req }) => {
+        return User.findOne({ login: value }).then(userDoc => {
+          if (userDoc) {
+            return Promise.reject('Login already exists!');
+          }
+        });
+      })
   ], authController.registerUser);
 
 router.post('/login', authController.loginUser);
-
-//router.get('/logout', authController.logoutUser);
 
 module.exports = router;

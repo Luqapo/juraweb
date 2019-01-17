@@ -5,6 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import * as actions from '../../store/actions/auth.jsx';
 import { styles } from './LoginFormStyles';
@@ -26,11 +29,37 @@ class LoginForm extends React.Component{
     handleChange = (e) => {
         const value = e.target.value;
         const name = e.target.name;
-
+        
         this.setState({
             [name]: value
-        });
+        }, () => console.log(this.validateInput(name)));
+    }
 
+    validateInput = (name) => {
+        switch(name) {
+            case 'login':
+                if(this.state.login.length >= 5){
+                    return true;
+                };
+                return false;
+            case 'password':
+                if(this.state.password.length >= 5){
+                    return true;
+                };
+                return false;
+            case 'password2':
+                if(this.state.password2 === this.state.password){
+                    return true;
+                };
+                return false;
+            case 'email':
+                if(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(this.state.email)){
+                    return true;
+                };
+                return false;
+            default:
+                return false;
+        }
     }
 
     handleAdd = () => {
@@ -78,15 +107,21 @@ class LoginForm extends React.Component{
                     >
                         <div className={classes.paper}>
                             <form onSubmit={this.submitHandler}>
+                                <FormControl required error={!this.validateInput('login')}>
                                     <Input name="login" 
-                                           onChange={this.handleChange} 
-                                           placeholder="Login"
-                                           required/>
+                                            onChange={this.handleChange} 
+                                            placeholder="Login"
+                                            required/>
+                                    {!this.validateInput('login') && <FormHelperText>Min 5 characterds</FormHelperText>}
+                                </FormControl>
+                                <FormControl required error={!this.validateInput('password')}>
                                     <Input name="password" 
                                            onChange={this.handleChange} 
                                            type="password" 
                                            placeholder="Password"
                                            required/>
+                                    {!this.validateInput('password') && <FormHelperText>Min 5 characterds</FormHelperText>}
+                                </FormControl>
                                 {this.state.addUser ? addAcount : null}
                                 <div className={classes.buttonCenter}>
                                     <Button type="submit">Wyślij</Button>
